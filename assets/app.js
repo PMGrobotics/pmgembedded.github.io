@@ -3,7 +3,7 @@
    Data is loaded from data/config.yaml, data/projects.yaml, data/team.yaml
 ───────────────────────────────────────────────────────────────────────────── */
 
-const state = { projects: [], team: [], config: {}, loadError: null };
+const state = { projects: [], team: [], config: {}, services: [], loadError: null };
 
 // ── Data loading ──────────────────────────────────────────────────────────────
 
@@ -15,14 +15,16 @@ async function loadYaml(url) {
 
 async function loadData() {
   try {
-    const [projects, team, config] = await Promise.all([
+    const [projects, team, config, services] = await Promise.all([
       loadYaml('data/projects.yaml'),
       loadYaml('data/team.yaml'),
       loadYaml('data/config.yaml'),
+      loadYaml('data/services.yaml'),
     ]);
     state.projects = projects || [];
     state.team     = team     || [];
     state.config   = config   || {};
+    state.services = services || [];
   } catch (err) {
     console.error('Failed to load site data:', err);
     state.loadError = err.message;
@@ -51,6 +53,16 @@ function router() {
     return;
   }
 
+  const serviceMatch = hash.match(/^#service\/(.+)/);
+  if (serviceMatch) {
+    const service = state.services.find(s => s.id === serviceMatch[1]);
+    if (service) {
+      renderService(service);
+      window.scrollTo({ top: 0 });
+      return;
+    }
+  }
+
   renderHome();
 
   const sectionId = hash.replace('#', '');
@@ -75,6 +87,7 @@ function renderHome() {
   initScrollReveal();
   initActiveNav();
   initProjectsCarousel();
+  initServiceCards();
 }
 
 // ── All-projects page ─────────────────────────────────────────────────────────
@@ -108,6 +121,135 @@ function renderProjectsList() {
   });
 
   initProjectCards();
+  initScrollReveal();
+}
+
+// ── Service detail page ───────────────────────────────────────────────────────
+
+function renderService(s) {
+  const allProjects = state.projects || [];
+  const relevant = (s.projects || [])
+    .map(id => allProjects.find(p => p.id === id))
+    .filter(Boolean)
+    .filter(p => !p.hidden);
+
+  const highlightsHTML = (s.highlights || []).map(h => `
+    <div class="sv-highlight">
+      <div class="sv-highlight-num">${h.number}</div>
+      <div class="sv-highlight-label">${h.label}</div>
+    </div>`).join('');
+
+  const subsHTML = (s.subs || []).map(sub => `
+    <div class="sv-sub-card">
+      <div class="sv-sub-icon"><i class="ti ${sub.icon}" aria-hidden="true"></i></div>
+      <h4 class="sv-sub-title">${sub.title}</h4>
+      <p class="sv-sub-desc">${sub.desc}</p>
+    </div>`).join('');
+
+  const relTotalPages = Math.ceil(relevant.length / 3);
+  const relDots = relTotalPages > 1
+    ? `<div class="carousel-dots" id="rel-carousel-dots">
+        ${Array.from({ length: relTotalPages }, (_, i) =>
+          `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-page="${i}" aria-label="Page ${i + 1}"></button>`
+        ).join('')}
+       </div>`
+    : '<div></div>';
+  const projectsHTML = relevant.length ? `
+    <div class="sv-divider"></div>
+    <div class="section-header-row">
+      <div class="section-header" style="margin-bottom:0">
+        <h2>Relevant projects</h2>
+      </div>
+      <a href="#all-projects" class="view-all-link">
+        View all ${svgArrowRight(14)}
+      </a>
+    </div>
+    <div id="rel-cards" class="projects-grid" style="margin-top:32px">
+      ${relevant.slice(0, 3).map((p, i) => projectCardHTML(p, i)).join('')}
+    </div>
+    ${relTotalPages > 1 ? `
+    <div class="carousel-controls">
+      ${relDots}
+      <div class="carousel-arrows">
+        <button class="carousel-btn" id="rel-prev" aria-label="Previous projects" disabled>
+          ${svgChevronLeft()}
+        </button>
+        <button class="carousel-btn" id="rel-next" aria-label="Next projects">
+          ${svgChevronRight()}
+        </button>
+      </div>
+    </div>` : ''}` : '';
+
+  const svgIconMap = {
+    'pcb-design':              svgChip(),
+    'embedded-programming':    svgCode(),
+    'mechanical-design':       svgGear(),
+    'prototype-to-production': svgRocket(),
+  };
+  const otherServices = (state.services || []).filter(sv => sv.id !== s.id);
+  const otherServicesHTML = otherServices.length ? `
+    <div class="sv-divider"></div>
+    <div class="section-header-row">
+      <div class="section-header" style="margin-bottom:0">
+        <h2>Other services</h2>
+      </div>
+    </div>
+    <div class="services-grid sv-other-grid" style="margin-top:32px">
+      ${otherServices.map((sv, i) => `
+        <div class="service-card reveal reveal-d${i + 1}" data-id="${sv.id}" style="cursor:pointer">
+          <div class="service-icon-wrap">
+            <div class="service-icon">${svgIconMap[sv.id] || `<i class="ti ${sv.icon || ''}" aria-hidden="true"></i>`}</div>
+          </div>
+          <h3>${sv.title}</h3>
+          <p>${sv.tagline || ''}</p>
+          <span class="service-card-cta">Learn more ${svgArrowRight(12)}</span>
+        </div>`).join('')}
+    </div>` : '';
+
+  document.getElementById('app').innerHTML = `
+  <div class="service-page">
+    <div class="container">
+      <a href="#" class="back-link" id="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back to home
+      </a>
+
+      <div class="sv-hero">
+        <span class="sv-badge">Services</span>
+        <h1 class="sv-title">${s.title}</h1>
+        <p class="sv-desc">${s.description || ''}</p>
+      </div>
+
+      <div class="sv-highlights">
+        ${highlightsHTML}
+      </div>
+
+      <div class="sv-divider"></div>
+
+      <div class="sv-subs-grid">
+        ${subsHTML}
+      </div>
+
+      ${otherServicesHTML}
+
+      ${projectsHTML}
+
+    </div>
+  </div>
+  ${contactHTML()}`;
+
+  document.getElementById('back-btn').addEventListener('click', e => {
+    e.preventDefault();
+    window.location.hash = '';
+  });
+
+  initProjectCards();
+  initServiceCards();
+  initRelevantProjectsCarousel(relevant);
+  initContactForm();
   initScrollReveal();
 }
 
@@ -180,28 +322,25 @@ function statsHTML() {
 }
 
 function servicesHTML() {
-  const services = [
-    {
-      icon: svgChip(),
-      title: 'PCB Design',
-      desc: 'From schematic capture to production-ready Gerber files. Multi-layer boards, high-speed design, mixed-signal layouts. One of our engineers trained at CERN.',
-    },
-    {
-      icon: svgCode(),
-      title: 'Embedded Programming',
-      desc: 'Bare-metal and RTOS firmware. STM32, NXP, TI, Nordic. Drivers, communication protocols, power management, and OTA updates.',
-    },
-    {
-      icon: svgGear(),
-      title: 'Mechanical Design',
-      desc: '3D CAD modeling, enclosure design, and DFM for manufacturing. Our team built two complete robots that took first place at the international Eurobot 2019 competition.',
-    },
-    {
-      icon: svgRocket(),
-      title: 'Prototype to Production',
-      desc: 'We take you from proof-of-concept to production-ready design, and connect you with trusted manufacturers for both small-volume and large-scale production runs.',
-    },
+  const svgIcons = {
+    'pcb-design':              svgChip(),
+    'embedded-programming':    svgCode(),
+    'mechanical-design':       svgGear(),
+    'prototype-to-production': svgRocket(),
+  };
+  const hardcoded = [
+    { id: 'pcb-design',              title: 'PCB Design',              desc: 'From schematic capture to production-ready Gerber files. Multi-layer boards, high-speed design, mixed-signal layouts. One of our engineers trained at CERN.' },
+    { id: 'embedded-programming',    title: 'Embedded Programming',    desc: 'Bare-metal and RTOS firmware. STM32, NXP, TI, Nordic. Drivers, communication protocols, power management, and OTA updates.' },
+    { id: 'mechanical-design',       title: 'Mechanical Design',       desc: '3D CAD modeling, enclosure design, and DFM for manufacturing. Our team built two complete robots that took first place at the international Eurobot 2019 competition.' },
+    { id: 'prototype-to-production', title: 'Prototype to Production', desc: 'We take you from proof-of-concept to production-ready design, and connect you with trusted manufacturers for both small-volume and large-scale production runs.' },
   ];
+  const source = (state.services && state.services.length) ? state.services : hardcoded;
+  const services = source.map(s => ({
+    id:   s.id,
+    icon: svgIcons[s.id] || `<i class="ti ${s.icon || ''}" aria-hidden="true"></i>`,
+    title: s.title,
+    desc:  s.tagline || s.desc || '',
+  }));
 
   return `
   <section class="services" id="services">
@@ -211,12 +350,13 @@ function servicesHTML() {
       </div>
       <div class="services-grid">
         ${services.map((s, i) => `
-          <div class="service-card reveal reveal-d${i + 1}">
+          <div class="service-card reveal reveal-d${i + 1}" data-id="${s.id}" style="cursor:pointer">
             <div class="service-icon-wrap">
               <div class="service-icon">${s.icon}</div>
             </div>
             <h3>${s.title}</h3>
             <p>${s.desc}</p>
+            <span class="service-card-cta">Learn more ${svgArrowRight(12)}</span>
           </div>`).join('')}
       </div>
     </div>
@@ -463,6 +603,44 @@ function renderProject(p) {
         </div>`).join('')}
     </div>` : '';
 
+  const others = state.projects.filter(op => !op.hidden && op.id !== p.id);
+  const moreTotalPages = Math.ceil(others.length / 3);
+  const moreDots = moreTotalPages > 1
+    ? `<div class="carousel-dots" id="more-carousel-dots">
+        ${Array.from({ length: moreTotalPages }, (_, i) =>
+          `<button class="carousel-dot${i === 0 ? ' active' : ''}" data-page="${i}" aria-label="Page ${i + 1}"></button>`
+        ).join('')}
+       </div>`
+    : '<div></div>';
+  const othersHTML = others.length ? `
+  <section class="more-projects-strip">
+    <div class="container">
+      <div class="section-header-row">
+        <div class="section-header">
+          <h2>More projects</h2>
+        </div>
+        <a href="#all-projects" class="view-all-link">
+          View all ${svgArrowRight(14)}
+        </a>
+      </div>
+      <div id="more-projects-cards" class="projects-grid">
+        ${others.slice(0, 3).map((op, i) => projectCardHTML(op, i)).join('')}
+      </div>
+      ${moreTotalPages > 1 ? `
+      <div class="carousel-controls">
+        ${moreDots}
+        <div class="carousel-arrows">
+          <button class="carousel-btn" id="more-prev" aria-label="Previous projects" disabled>
+            ${svgChevronLeft()}
+          </button>
+          <button class="carousel-btn" id="more-next" aria-label="Next projects">
+            ${svgChevronRight()}
+          </button>
+        </div>
+      </div>` : ''}
+    </div>
+  </section>` : '';
+
   document.getElementById('app').innerHTML = `
   <div class="project-detail">
     <div class="container">
@@ -489,7 +667,9 @@ function renderProject(p) {
       </div>
       ${highlightsHTML ? `<hr>${highlightsHTML}` : ''}
     </div>
-  </div>`;
+  </div>
+  ${othersHTML}
+  ${contactHTML()}`;
 
   document.getElementById('back-btn').addEventListener('click', e => {
     e.preventDefault();
@@ -501,6 +681,10 @@ function renderProject(p) {
   });
 
   initProjectSlideshow();
+  initProjectCards();
+  initMoreProjectsCarousel(others);
+  initContactForm();
+  initScrollReveal();
 }
 
 function initProjectSlideshow() {
@@ -562,6 +746,14 @@ function initProjectCards() {
   });
 }
 
+function initServiceCards() {
+  document.querySelectorAll('.service-card[data-id]').forEach(card => {
+    const go = () => { window.location.hash = `service/${card.dataset.id}`; };
+    card.addEventListener('click', go);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  });
+}
+
 function initProjectsCarousel() {
   const visible = state.projects.filter(p => !p.hidden);
   if (visible.length <= 3) return;
@@ -613,6 +805,80 @@ function initProjectsCarousel() {
     if (e.key === 'ArrowRight') goToPage(currentPage + 1);
   }
   document.addEventListener('keydown', keyHandler);
+}
+
+function initRelevantProjectsCarousel(projects) {
+  if (projects.length <= 3) return;
+  const totalPages = Math.ceil(projects.length / 3);
+  let currentPage = 0;
+
+  function goToPage(page) {
+    const container = document.getElementById('rel-cards');
+    if (!container) return;
+    currentPage = Math.max(0, Math.min(page, totalPages - 1));
+    container.classList.add('fading');
+    setTimeout(() => {
+      const slice = projects.slice(currentPage * 3, currentPage * 3 + 3);
+      container.innerHTML = slice.map((p, i) => projectCardHTML(p, i)).join('');
+      container.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      container.classList.remove('fading');
+      initProjectCards();
+      updateUI();
+    }, 220);
+  }
+
+  function updateUI() {
+    const prev = document.getElementById('rel-prev');
+    const next = document.getElementById('rel-next');
+    if (prev) prev.disabled = currentPage === 0;
+    if (next) next.disabled = currentPage === totalPages - 1;
+    document.querySelectorAll('#rel-carousel-dots .carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentPage);
+    });
+  }
+
+  document.getElementById('rel-prev')?.addEventListener('click', () => goToPage(currentPage - 1));
+  document.getElementById('rel-next')?.addEventListener('click', () => goToPage(currentPage + 1));
+  document.querySelectorAll('#rel-carousel-dots .carousel-dot').forEach(dot => {
+    dot.addEventListener('click', () => goToPage(parseInt(dot.dataset.page)));
+  });
+}
+
+function initMoreProjectsCarousel(projects) {
+  if (projects.length <= 3) return;
+  const totalPages = Math.ceil(projects.length / 3);
+  let currentPage = 0;
+
+  function goToPage(page) {
+    const container = document.getElementById('more-projects-cards');
+    if (!container) return;
+    currentPage = Math.max(0, Math.min(page, totalPages - 1));
+    container.classList.add('fading');
+    setTimeout(() => {
+      const slice = projects.slice(currentPage * 3, currentPage * 3 + 3);
+      container.innerHTML = slice.map((p, i) => projectCardHTML(p, i)).join('');
+      container.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      container.classList.remove('fading');
+      initProjectCards();
+      updateUI();
+    }, 220);
+  }
+
+  function updateUI() {
+    const prev = document.getElementById('more-prev');
+    const next = document.getElementById('more-next');
+    if (prev) prev.disabled = currentPage === 0;
+    if (next) next.disabled = currentPage === totalPages - 1;
+    document.querySelectorAll('#more-carousel-dots .carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentPage);
+    });
+  }
+
+  document.getElementById('more-prev')?.addEventListener('click', () => goToPage(currentPage - 1));
+  document.getElementById('more-next')?.addEventListener('click', () => goToPage(currentPage + 1));
+  document.querySelectorAll('#more-carousel-dots .carousel-dot').forEach(dot => {
+    dot.addEventListener('click', () => goToPage(parseInt(dot.dataset.page)));
+  });
 }
 
 function initSlideshow() {
@@ -793,6 +1059,25 @@ function svgChevronRight() {
   return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
     aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>`;
+}
+
+function svgPCBTrace() {
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+    stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="8" width="8" height="8" rx="1"/>
+    <line x1="8" y1="11" x2="4" y2="11"/>
+    <line x1="4" y1="11" x2="4" y2="4"/>
+    <line x1="4" y1="4" x2="12" y2="4"/>
+    <circle cx="4" cy="11" r="1.4" fill="currentColor" stroke="none"/>
+    <circle cx="4" cy="4" r="1.4" fill="currentColor" stroke="none"/>
+    <line x1="16" y1="13" x2="20" y2="13"/>
+    <line x1="20" y1="13" x2="20" y2="20"/>
+    <line x1="20" y1="20" x2="12" y2="20"/>
+    <circle cx="20" cy="13" r="1.4" fill="currentColor" stroke="none"/>
+    <circle cx="20" cy="20" r="1.4" fill="currentColor" stroke="none"/>
+    <line x1="12" y1="8" x2="12" y2="4"/>
+    <line x1="16" y1="8" x2="16" y2="4"/>
+  </svg>`;
 }
 
 function svgChip() {

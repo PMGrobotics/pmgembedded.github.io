@@ -1,0 +1,157 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  PMG Embedded — services data
+# ─────────────────────────────────────────────────────────────────────────────
+
+- id: pcb-design
+  title: PCB Design
+  icon: ti-circuit-board
+  tagline: "From schematic to production-ready Gerber files."
+  description: |
+    We design multi-layer boards, high-speed digital PCBs, and mixed-signal
+    layouts using industry-standard tools. One of our engineers trained at CERN.
+    Every design is reviewed for signal integrity, DFM, and IPC compliance
+    before handoff.
+  highlights:
+    - { number: "50+", label: "PCBs designed" }
+    - { number: "10+", label: "Gbps max speed" }
+    - { number: "CERN", label: "Trained engineer" }
+  subs:
+    - icon: ti-file-description
+      title: Schematic capture
+      desc: "Component selection, parts library, detailed technical specs. Altium, KiCad, Cadence."
+    - icon: ti-layout-board
+      title: PCB layout
+      desc: "Multi-layer boards, impedance control, DFM, 3D STEP model for mechanical integration."
+    - icon: ti-wave-sine
+      title: Signal integrity
+      desc: "High-speed design up to 10+ Gbps. TDR, eye diagrams, S-parameters, crosstalk analysis."
+    - icon: ti-cpu
+      title: High-density layout
+      desc: "FPGA, multi-core processors, microvia technology, sub-100μm features."
+    - icon: ti-checkup-list
+      title: DFM review
+      desc: "Design for manufacturability — cost-effective production with IPC standards compliance."
+    - icon: ti-chart-line
+      title: SPICE / IBIS simulation
+      desc: "Analogue stage verification, memory interface timing, HyperLynx for multi-gigabit channels."
+  projects:
+    - am1808-som
+    - mpc8313-powerquic
+    - jetson-carrier-board
+    - usb-hub
+    - signal-integrity-and-emi-emc
+
+- id: embedded-programming
+  title: Embedded Programming
+  icon: ti-code
+  tagline: "Bare-metal and RTOS firmware for resource-constrained hardware."
+  description: |
+    We write drivers, communication stacks, and application logic — from first
+    power-on to production firmware. STM32, NXP, TI, Nordic, Espressif.
+    From ultra-low-power coin-cell devices to complex multi-threaded RTOS systems.
+  highlights:
+    - { number: "10+", label: "MCU families" }
+    - { number: "4", label: "Wireless protocols" }
+    - { number: "Full", label: "Bring-up to production" }
+  subs:
+    - icon: ti-cpu
+      title: Bare-metal firmware
+      desc: "Low-level drivers, HAL, startup code. Maximum control over power and timing."
+    - icon: ti-layers-intersect
+      title: RTOS development
+      desc: "Task scheduling, mutexes, queues. FreeRTOS and Zephyr for complex multi-threaded systems."
+    - icon: ti-antenna
+      title: Wireless connectivity
+      desc: "BLE, NB-IoT, LoRaWAN, WiFi. Full stack from radio driver to cloud integration."
+    - icon: ti-plug-connected
+      title: Communication protocols
+      desc: "SPI, I2C, UART, CAN, USB, Ethernet. Custom drivers and protocol stacks."
+    - icon: ti-battery-charging
+      title: Ultra-low-power
+      desc: "Sleep modes, wake-up strategies, power profiling. Years of battery life from small cells."
+    - icon: ti-refresh
+      title: OTA & bootloaders
+      desc: "Secure over-the-air updates, custom bootloaders, firmware versioning and rollback."
+  projects:
+    - smart-lock-keivan
+    - iot-sensor-node
+    - qa-maestro-pmu
+    - sagitta
+    - twinkle
+
+- id: mechanical-design
+  title: Mechanical Design
+  icon: ti-augmented-reality
+  tagline: "3D CAD, robotics integration and DFM for manufacturing."
+  description: |
+    From concept sketches to production-ready assemblies — we design mechanical
+    systems for industrial automation, robotics, and embedded hardware. We work
+    in Autodesk Inventor and Fusion 360, and have delivered everything from
+    precision lifting tables to full mobile robotics platforms with dual
+    manipulators.
+  highlights:
+    - { number: "5+", label: "Automation systems delivered" }
+    - { number: "±1mm", label: "Positioning accuracy achieved" }
+    - { number: "2019", label: "Eurobot 1st place worldwide" }
+  subs:
+    - icon: ti-box-model
+      title: 3D CAD modeling
+      desc: "Full 3D models and assemblies in Autodesk Inventor and Fusion 360. STEP exports for manufacturing."
+    - icon: ti-device-desktop
+      title: Enclosure design
+      desc: "Custom enclosures for PCBs and embedded systems — sheet metal, plastic, and machined parts."
+    - icon: ti-tools
+      title: DFM for manufacturing
+      desc: "Design for manufacturability reviews — tolerances, surface finishes, assembly considerations."
+    - icon: ti-calculator
+      title: Engineering calculations
+      desc: "Component selection, load analysis, drivetrain calculations — stepper motors, ball screws, linear guides."
+    - icon: ti-file-vector
+      title: Manufacturing drawings
+      desc: "Full technical drawings with GD&T, tolerances, and material specs ready for external manufacturers."
+    - icon: ti-truck-delivery
+      title: Sourcing & assembly
+      desc: "Component sourcing, coordination with CNC and sheet metal shops, full mechanical assembly and integration."
+  projects:
+    - Lift
+    - mini-asrs
+    - mobile-robotics-platform
+    - cable-drive-motion
+    - cnc-vise-automation
+
+- id: prototype-to-production
+  title: Prototype to Production
+  icon: ti-rocket
+  tagline: "From proof-of-concept to production-ready product."
+  description: |
+    We take your hardware idea from a napkin sketch to a production-ready
+    product. Full project management, manufacturer sourcing, and bring-up
+    support — so you don't have to coordinate five different contractors.
+  highlights:
+    - { number: "30+", label: "Products delivered" }
+    - { number: "15+", label: "Countries served" }
+    - { number: "2020", label: "Founded" }
+  subs:
+    - icon: ti-bulb
+      title: Proof of concept
+      desc: "Rapid prototyping to validate the idea — breadboard, dev kit, or custom PCB depending on the stage."
+    - icon: ti-test-pipe
+      title: Bring-up & testing
+      desc: "Hardware bring-up, functional testing, debug and validation before moving to production."
+    - icon: ti-file-check
+      title: Design for production
+      desc: "DFM and DFA reviews, BOM optimization, cost reduction without compromising reliability."
+    - icon: ti-building-factory
+      title: Manufacturer sourcing
+      desc: "We connect you with trusted PCB fabs, assembly houses, and mechanical manufacturers."
+    - icon: ti-packages
+      title: Small volume production
+      desc: "10–500 units. Full support through first production run — Gerbers, BOM, assembly files, test jigs."
+    - icon: ti-chart-bar
+      title: Scale-up support
+      desc: "Transition to large-scale production — yield optimization, supplier qualification, cost engineering."
+  projects:
+    - smart-lock-keivan
+    - am1808-som
+    - Lift
+    - iot-sensor-node

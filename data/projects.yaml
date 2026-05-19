@@ -499,3 +499,161 @@
     - { icon: "ti-tools", title: "Full mechanical", desc: "3D CAD, manufacturing drawings, sourcing, and assembly" }
     - { icon: "ti-code", title: "Test firmware", desc: "Embedded C firmware for motor control and motion verification" }
     
+
+- id: mini-asrs
+  hidden: false
+  title: Mini-load ASRS for Small Parts Sorting
+  client: Apsara
+  category: Mechanical Design
+  thumbnail: "images/projects/apsara/thumbs/mini_asrs_thumb.png"
+  summary: "Automated storage and retrieval system for sorting small parts using AprilTag vision and a custom parallel gripper."
+  description: |
+    Design and development of a mini automated storage and retrieval system
+    (ASRS) for handling and sorting small parts — screws, nuts, washers —
+    stored in standardized boxes.
+
+    Boxes are identified using AprilTags detected by an IDS industrial camera.
+    A custom parallel gripper with designed fingers picks and separates boxes
+    automatically across X, Y, and Z axes driven by linear actuators.
+
+    A dual-stage Z-axis was developed — main Z motion for box positioning and
+    a secondary 50 mm actuator for vertical gripper compliance. A separation
+    mechanism allows one box to be extracted while adjacent boxes are restrained
+    by auxiliary fingers. A fully functional prototype was built and validated.
+  images:
+    - "images/projects/apsara/mini_asrs_thumb.png"
+  specs:
+    - { key: "CAD", value: "Fusion 360" }
+    - { key: "Vision", value: "IDS camera + AprilTags" }
+    - { key: "Gripper", value: "EGB parallel gripper" }
+    - { key: "Motion", value: "X/Y/Z linear actuators" }
+    - { key: "Status", value: "Delivered" }
+  highlights:
+    - { icon: "ti-eye", title: "Vision-based sorting", desc: "AprilTag detection via IDS industrial camera for automatic box classification" }
+    - { icon: "ti-hand-grab", title: "Custom gripper", desc: "Parallel gripper with custom fingers and dual-stage Z-axis for precise picking" }
+    - { icon: "ti-checkup-list", title: "Validated prototype", desc: "Full functional prototype built, assembled, and tested on-site" }
+  tags:
+    - Mechanical Design
+    - ASRS
+    - Fusion 360
+    - Machine Vision
+    - Linear Motion
+
+- id: mobile-robotics-platform
+  hidden: false
+  title: Mobile Robotics Platform with Dual UR10
+  client: Apsara
+  category: Mechanical Design
+  thumbnail: "images/projects/mechanical/thumbs/ur10_thumb.png"
+  summary: "Modular mobile platform integrating two UR10 manipulators on a mecanum-wheel base with deployable stabilizers."
+  description: |
+    Modular mobile robotic platform integrating two UR10 robotic manipulators
+    on a Vention aluminum-frame structure with mecanum-wheel mobility.
+
+    The complete mechanical architecture was designed in Autodesk Inventor,
+    including full integration layout for dual UR10 arms. Custom laser-cut
+    mounting plates, actuator brackets, mecanum-wheel holders, and 3D-printed
+    camera mounts were developed. Four Firgelli linear actuators serve as
+    deployable stabilizers during manipulation.
+
+    Mechanical sizing and structural layout were performed to withstand dynamic
+    loads from dual robot arm operation. Manufacturing drawings and documentation
+    were produced for CNC fabrication and assembly.
+  images:
+    - "images/projects/mechanical/ur10_thumb.png"
+  specs:
+    - { key: "Manipulators", value: "2× UR10" }
+    - { key: "Mobility", value: "Mecanum-wheel base" }
+    - { key: "Frame", value: "Vention aluminum profiles" }
+    - { key: "Stabilizers", value: "4× Firgelli linear actuators" }
+    - { key: "CAD", value: "Autodesk Inventor" }
+  highlights:
+    - { icon: "ti-robot", title: "Dual UR10 integration", desc: "Full mechanical architecture for two robotic arms on a single mobile platform" }
+    - { icon: "ti-arrows-move", title: "Mecanum mobility", desc: "Omnidirectional movement with preassembled mecanum-wheel drive module" }
+    - { icon: "ti-adjustments", title: "Deployable stabilizers", desc: "Four linear actuators deployed during manipulation for structural stability" }
+  tags:
+    - Mechanical Design
+    - Robotics Integration
+    - Autodesk Inventor
+    - Modular Systems
+
+- id: cable-drive-motion
+  hidden: false
+  title: Cable-Drive Motion System for Vision
+  client: Apsara
+  category: Mechanical Design
+  thumbnail: "images/projects/mechanical/thumbs/cable_drive_thumb.png"
+  summary: "Compact cable-driven camera positioning system with AprilTag-based feedback, built as a functional prototype."
+  description: |
+    Concept and prototype of a cable-driven motion system for camera
+    positioning, developed as a mini test platform to validate mechanical
+    architecture and control strategies before scaling to a larger system.
+
+    Four stepper motors drive individual cable drums. Fixed and double movable
+    pulleys enable smooth cable winding regardless of camera position. Vision
+    feedback is provided by cameras observing rotating rings with AprilTags
+    mounted on each drum.
+
+    All custom parts were designed for additive manufacturing — 3D-printed
+    polymer for complex geometries, stainless steel for high-load brackets,
+    and aluminum base plate for structural rigidity. Electronics including
+    motor drivers, Raspberry Pi, and a 12V battery system are fully
+    self-contained.
+  images:
+    - "images/projects/mechanical/cable_drive_thumb.png"
+  specs:
+    - { key: "Actuation", value: "4× stepper motors" }
+    - { key: "Feedback", value: "AprilTag vision" }
+    - { key: "CAD", value: "Fusion 360" }
+    - { key: "Controller", value: "Raspberry Pi" }
+    - { key: "Power", value: "12V self-contained" }
+  highlights:
+    - { icon: "ti-viewfinder", title: "Cable-driven positioning", desc: "Four-motor system with custom drums and pulley routing for smooth multi-axis motion" }
+    - { icon: "ti-eye", title: "Vision feedback", desc: "AprilTag-based position tracking using industrial cameras on each drum" }
+    - { icon: "ti-printer", title: "Additive manufacturing", desc: "All custom parts optimised for 3D printing with stainless steel where needed" }
+  tags:
+    - Mechanical Design
+    - Cable-Driven Systems
+    - Mechatronics
+    - Fusion 360
+    - Prototyping
+
+- id: cnc-vise-automation
+  hidden: false
+  title: Concept Automation System for CNC Vise
+  client: Apsara
+  category: Mechanical Design
+  thumbnail: "images/projects/mechanical/thumbs/cnc_vise_thumb.png"
+  summary: "Concept-level robotic automation system for CNC vise loading, zero positioning, and torque-controlled clamping."
+  description: |
+    Concept-level automation project for automating workpiece zero positioning
+    and clamping inside a CNC vise, enabling robotic loading with automated
+    CNC machine operation.
+
+    The system uses a collaborative robot (xArm 6) mounted on linear guide
+    rails driven by a NEMA23 stepper and ball screw. An Intel RealSense D435i
+    with AprilTag markers provides vision-based positioning on the worktable,
+    workpiece holders, and vise jaws.
+
+    Automated clamping uses linear actuators with a stepper-driven tightening
+    mechanism and integrated torque sensor for controlled clamping force.
+    Full feasibility analysis, spatial constraint evaluation, and automation
+    logic were developed for CNC integration.
+  images:
+    - "images/projects/mechanical/cnc_vise_thumb.png"
+  specs:
+    - { key: "Robot", value: "xArm 6 (collaborative)" }
+    - { key: "Vision", value: "RealSense D435i + AprilTags" }
+    - { key: "Motion", value: "Ball screw + linear rails" }
+    - { key: "CAD", value: "Fusion 360" }
+    - { key: "Status", value: "Concept / R&D" }
+  highlights:
+    - { icon: "ti-robot", title: "Collaborative robot", desc: "xArm 6 on linear rails for flexible CNC vise loading and part handling" }
+    - { icon: "ti-eye", title: "Vision positioning", desc: "RealSense D435i with AprilTags for sub-millimetre workpiece alignment" }
+    - { icon: "ti-adjustments-horizontal", title: "Torque clamping", desc: "Stepper-driven tightening with integrated torque sensor for controlled force" }
+  tags:
+    - Mechanical Design
+    - CNC Automation
+    - Robotics Integration
+    - Fusion 360
+    - Machine Vision
