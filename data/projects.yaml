@@ -50,6 +50,15 @@
     - TI AM1808
     - Industrial
     - High-Density Layout
+  specs:
+    - { key: "MCU", value: "TI AM1808" }
+    - { key: "Memory", value: "DDR2 + NAND flash" }
+    - { key: "Form factor", value: "SoM" }
+    - { key: "Application", value: "Industrial" }
+  highlights:
+    - { icon: "ti-cpu", title: "High-density layout", desc: "Full CPU subsystem on compact SoM with mixed-signal design" }
+    - { icon: "ti-plug", title: "Carrier board ready", desc: "Plug into custom carrier without redesigning CPU circuitry" }
+    - { icon: "ti-shield-check", title: "Production validated", desc: "Full bring-up including power, memory, and peripheral testing" }
 
 - id: mpc8313-powerquic
   hidden: false
@@ -74,6 +83,14 @@
     - PowerQUIC
     - Embedded Computing
     - Networking
+  specs:
+    - { key: "MCU", value: "NXP MPC8313E" }
+    - { key: "Memory", value: "DDR2 + NAND + NOR" }
+    - { key: "Interfaces", value: "Dual Ethernet, USB" }
+    - { key: "Application", value: "Networking / Industrial" }
+  highlights:
+    - { icon: "ti-network", title: "Linux-ready", desc: "Capable processor without x86 overhead, ready for embedded Linux" }
+    - { icon: "ti-server", title: "Rich peripherals", desc: "Dual Ethernet, USB, and serial interfaces on a single board" }
 
 - id: smart-suitcase
   hidden: true
@@ -125,6 +142,15 @@
     - Edge AI
     - High-Speed Design
     - Signal Integrity
+  specs:
+    - { key: "Module", value: "NVIDIA Jetson Xavier NX" }
+    - { key: "Interfaces", value: "PCIe, USB 3.0, GbE, MIPI CSI" }
+    - { key: "Application", value: "Edge AI / Machine Vision" }
+    - { key: "Focus", value: "Signal Integrity" }
+  highlights:
+    - { icon: "ti-brain", title: "Edge AI ready", desc: "Designed for sustained AI inference workloads with thermal management" }
+    - { icon: "ti-wave-sine", title: "Signal integrity", desc: "Controlled-impedance routing and proper reference plane management" }
+    - { icon: "ti-camera", title: "MIPI CSI lanes", desc: "Multiple camera lanes broken out for machine vision applications" }
 
 - id: usb-hub
   hidden: false
@@ -153,6 +179,14 @@
     - USB 3.0
     - Power Management
     - Industrial
+  specs:
+    - { key: "Ports", value: "4× USB 3.0" }
+    - { key: "Input", value: "Wide-range DC" }
+    - { key: "Protection", value: "Per-port overcurrent" }
+    - { key: "Application", value: "Industrial" }
+  highlights:
+    - { icon: "ti-shield", title: "Overcurrent protection", desc: "Per-port power switches protect downstream devices" }
+    - { icon: "ti-bolt", title: "Onboard regulation", desc: "Switching regulator generates stable 5V bus from wide DC input" }
 
 - id: signal-integrity-and-emi-emc
   hidden: false
@@ -201,6 +235,15 @@
     - ANSYS
     - PCB Analysis
     - Simulation
+  specs:
+    - { key: "Max speed", value: "10+ Gbps" }
+    - { key: "Analysis", value: "TDR, Eye diagram, S-param" }
+    - { key: "Tools", value: "Ansys, HyperLynx, LTspice" }
+    - { key: "Interfaces", value: "USB 3.x, PCIe, DDR, HDMI" }
+  highlights:
+    - { icon: "ti-wave-sine", title: "Signal integrity", desc: "TDR, eye diagrams, S-parameters, and crosstalk analysis" }
+    - { icon: "ti-radio", title: "EMI/EMC analysis", desc: "Near and far-field emission measurements before formal compliance" }
+    - { icon: "ti-checklist", title: "Design review", desc: "Grounding, stackup, return paths, and differential routing review" }
 
 - id: qa-maestro-pmu
   hidden: false
@@ -231,6 +274,14 @@
     - STM32
     - Power Management
     - Industrial
+  specs:
+    - { key: "MCU", value: "STM32" }
+    - { key: "Input", value: "12V system power" }
+    - { key: "Output", value: "3.3V regulated rails" }
+    - { key: "Interface", value: "USB firmware update" }
+  highlights:
+    - { icon: "ti-cpu", title: "STM32 supervision", desc: "Rail sequencing, voltage monitoring, and reset control" }
+    - { icon: "ti-usb", title: "USB debug port", desc: "In-field firmware updates without disassembly" }
 
 - id: smart-lock-keivan
   hidden: false
@@ -264,6 +315,15 @@
     - NB-IoT
     - IoT
     - Ultra-Low-Power
+  specs:
+    - { key: "MCU", value: "STM32L071CBT6" }
+    - { key: "Connectivity", value: "NB-IoT (Quectel BG95-M2)" }
+    - { key: "Motor driver", value: "DRV8210" }
+    - { key: "SIM", value: "Embedded eSIM" }
+  highlights:
+    - { icon: "ti-battery", title: "Ultra-low-power", desc: "Cortex-M0+ with deep sleep for maximum battery life" }
+    - { icon: "ti-antenna", title: "NB-IoT nationwide", desc: "Cellular connectivity with no Wi-Fi or Bluetooth dependency" }
+    - { icon: "ti-lock", title: "Full product", desc: "Hardware, PCB layout, and firmware from bring-up to production" }
 
 - id: sagitta
   hidden: false
@@ -288,6 +348,13 @@
     - Space Systems
     - Embedded Systems
     - High Reliability
+  specs:
+    - { key: "Application", value: "Satellite attitude" }
+    - { key: "Output", value: "Quaternion data" }
+    - { key: "Category", value: "Space hardware" }
+  highlights:
+    - { icon: "ti-stars", title: "Star pattern matching", desc: "On-board algorithm outputs quaternion attitude to satellite OBC" }
+    - { icon: "ti-shield-check", title: "High reliability", desc: "Firmware built for strict space mission constraints" }
 
 - id: twinkle
   hidden: false
@@ -311,6 +378,13 @@
     - Space Systems
     - Nanosatellites
     - Low Power
+  specs:
+    - { key: "Platform", value: "Nanosatellite" }
+    - { key: "Focus", value: "SWaP optimized" }
+    - { key: "Output", value: "Optical attitude data" }
+  highlights:
+    - { icon: "ti-stars", title: "Miniaturized", desc: "Same precision as larger systems in nanosatellite form factor" }
+    - { icon: "ti-battery", title: "Low power", desc: "Designed within strict size, weight, and power constraints" }
 
 - id: iot-sensor-node
   hidden: false
@@ -343,6 +417,14 @@
     - IoT
     - Ultra-Low-Power
     - Wireless
+  specs:
+    - { key: "MCU", value: "STM32 Cortex-M" }
+    - { key: "Power", value: "CR3032 coin cell" }
+    - { key: "Sensors", value: "Gyro, pressure, temp" }
+    - { key: "Debug", value: "SWD + UART" }
+  highlights:
+    - { icon: "ti-battery", title: "Coin-cell life", desc: "Deep sleep architecture for extended battery operation" }
+    - { icon: "ti-chart-dots", title: "3 sensors", desc: "Gyroscope, barometric pressure, and temperature in one node" }
 
 - id: lorawan-energy-meter
   hidden: false
@@ -366,3 +448,54 @@
     - LoRaWAN
     - Energy Monitoring
     - Low Power
+  specs:
+    - { key: "Connectivity", value: "LoRaWAN" }
+    - { key: "Power", value: "Primary cell battery" }
+    - { key: "Range", value: "Long-range uplink" }
+  highlights:
+    - { icon: "ti-antenna", title: "LoRaWAN", desc: "Long-range uplinks without cellular or Wi-Fi infrastructure" }
+    - { icon: "ti-battery", title: "Years of battery life", desc: "Ultra-low standby current for remote unattended deployment" }
+
+
+- id: Lift
+  hidden: false
+  title: Precision Lifting Table
+  client: Apsara
+  category: Mechanical Design
+  thumbnail: "images/projects/apsara/thumbs/lift_thumb_image_1.png"
+  summary: "Precision Lifting Table for Warehouse Mobile Robot"
+  description: |
+    Precision lifting table designed and integrated onto an autonomous warehouse
+    robot, enabling accurate vertical positioning for material handling operations.
+
+    The mechanical system is built around a ball screw drive mechanism with linear
+    guide rails, delivering reliable ±1 mm positioning accuracy. Component
+    selection covered the full drivetrain — stepper motor with brake, ball screw,
+    linear blocks, and couplings — with all calculations performed in-house.
+
+    Full 3D CAD models, assemblies, and manufacturing drawings were created in
+    Autodesk Inventor. Custom-machined parts were sourced and coordinated with
+    external manufacturers, followed by complete mechanical assembly and system
+    integration including wiring.
+
+    Test firmware written in embedded C was developed to verify stepper motor
+    control and validate motion accuracy before deployment.
+  images:
+    - "images/projects/apsara/lift_thumb_image_1.png"
+    - "images/projects/apsara/lift_main_image_2.png"
+  tags:
+    - Mechanical Design
+    - Prototyping
+    - Mechatronics
+    - Embedded C
+  specs:
+    - { key: "Accuracy", value: "±1 mm" }
+    - { key: "Drive", value: "Ball screw + stepper" }
+    - { key: "CAD", value: "Autodesk Inventor" }
+    - { key: "Firmware", value: "Embedded C" }
+    - { key: "Application", value: "Warehouse AMR" }
+  highlights:
+    - { icon: "ti-ruler-measure", title: "±1 mm accuracy", desc: "Ball screw and linear guide rails for precise positioning" }
+    - { icon: "ti-tools", title: "Full mechanical", desc: "3D CAD, manufacturing drawings, sourcing, and assembly" }
+    - { icon: "ti-code", title: "Test firmware", desc: "Embedded C firmware for motor control and motion verification" }
+    

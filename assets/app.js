@@ -429,17 +429,39 @@ function renderProject(p) {
         </div>` : ''}
     </div>` : '';
 
-  const descHTML = (p.description || '')
-    .split('\n')
-    .map(l => l.trim())
-    .filter(Boolean)
-    .map(l => {
-      if (l.startsWith('### ')) return `<h4>${l.slice(4)}</h4>`;
-      if (l.startsWith('## '))  return `<h3>${l.slice(3)}</h3>`;
-      if (l.startsWith('# '))   return `<h2>${l.slice(2)}</h2>`;
-      return `<p>${l}</p>`;
-    })
-    .join('');
+  const descHTML = (() => {
+    const lines = (p.description || '').split('\n').map(l => l.trim());
+    let html = '', buf = [];
+    const flush = () => { if (buf.length) { html += `<p>${buf.join(' ')}</p>`; buf = []; } };
+    for (const l of lines) {
+      if (!l)                    { flush(); continue; }
+      if (l.startsWith('### '))  { flush(); html += `<h4>${l.slice(4)}</h4>`; }
+      else if (l.startsWith('## ')) { flush(); html += `<h3>${l.slice(3)}</h3>`; }
+      else if (l.startsWith('# '))  { flush(); html += `<h2>${l.slice(2)}</h2>`; }
+      else                       { buf.push(l); }
+    }
+    flush();
+    return html;
+  })();
+
+  const specsHTML = (p.specs && p.specs.length) ? `
+    <p class="specs-section-label">Specifications</p>
+    <div class="spec-pills">
+      ${p.specs.map(s => `<div class="spec-pill"><span class="k">${s.key}</span><span class="v">${s.value}</span></div>`).join('')}
+    </div>` : '';
+
+  const highlights = p.highlights || [];
+  const hCols = highlights.length >= 3 ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)';
+  const highlightsHTML = highlights.length ? `
+    <p class="specs-section-label">Engineering highlights</p>
+    <div class="highlights-grid" style="grid-template-columns: ${hCols}">
+      ${highlights.map(h => `
+        <div class="highlight-card">
+          <div class="h-icon"><i class="ti ${h.icon}"></i></div>
+          <div class="h-title">${h.title}</div>
+          <div class="h-desc">${h.desc}</div>
+        </div>`).join('')}
+    </div>` : '';
 
   document.getElementById('app').innerHTML = `
   <div class="project-detail">
@@ -458,10 +480,14 @@ function renderProject(p) {
           ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
       </div>
-      ${galleryHTML}
       <div class="project-detail-body">
-        <div class="project-description">${descHTML}</div>
+        <div class="project-detail-image">${galleryHTML}</div>
+        <div class="project-detail-text">
+          <div class="project-description">${descHTML}</div>
+          ${specsHTML}
+        </div>
       </div>
+      ${highlightsHTML ? `<hr>${highlightsHTML}` : ''}
     </div>
   </div>`;
 
@@ -636,6 +662,18 @@ function initSlideshow() {
   });
 
   startTimer();
+}
+
+function initNavScroll() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  function update() {
+    const onHome = !window.location.hash.startsWith('#project/') && window.location.hash !== '#all-projects';
+    navbar.classList.toggle('nav-at-top', onHome && window.scrollY < 80);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('hashchange', update);
+  update();
 }
 
 function initScrollReveal() {
@@ -830,6 +868,7 @@ async function init() {
   await loadData();
   initHamburger();
   initNavLogoLink();
+  initNavScroll();
   router();
   window.addEventListener('hashchange', router);
 }
