@@ -533,7 +533,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .project-thumb {
   height: 200px;
   background: var(--surface);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   display: flex;
   align-items: center;
@@ -1400,7 +1401,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .sv-proj-thumb {
   height: 140px;
   background: var(--surface);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   display: flex;
   align-items: center;

@@ -505,7 +505,7 @@
   title: Mini-load ASRS for Small Parts Sorting
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/apsara/thumbs/mini_asrs_thumb.png"
+  thumbnail: "images/projects/apsara/thumbs/mini_asrs_thumb_v2.png"
   summary: "Automated storage and retrieval system for sorting small parts using AprilTag vision and a custom parallel gripper."
   description: |
     Design and development of a mini automated storage and retrieval system
@@ -521,7 +521,8 @@
     mechanism allows one box to be extracted while adjacent boxes are restrained
     by auxiliary fingers. A fully functional prototype was built and validated.
   images:
-    - "images/projects/apsara/mini_asrs_thumb.png"
+    - "images/projects/apsara/thumbs/mini_asrs_thumb_v2.png"
+    - "images/projects/apsara/mini_asrs_back.png"
   specs:
     - { key: "CAD", value: "Fusion 360" }
     - { key: "Vision", value: "IDS camera + AprilTags" }
