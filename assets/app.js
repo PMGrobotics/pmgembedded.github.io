@@ -133,17 +133,12 @@ function renderService(s) {
     .filter(Boolean)
     .filter(p => !p.hidden);
 
-  const highlightsHTML = (s.highlights || []).map(h => `
-    <div class="sv-highlight">
-      <div class="sv-highlight-num">${h.number}</div>
-      <div class="sv-highlight-label">${h.label}</div>
-    </div>`).join('');
-
   const subsHTML = (s.subs || []).map(sub => `
     <div class="sv-sub-card">
       <div class="sv-sub-icon"><i class="ti ${sub.icon}" aria-hidden="true"></i></div>
       <h4 class="sv-sub-title">${sub.title}</h4>
       <p class="sv-sub-desc">${sub.desc}</p>
+      ${(sub.tags && sub.tags.length) ? `<div class="project-tags">${sub.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
     </div>`).join('');
 
   const relTotalPages = Math.ceil(relevant.length / 3);
@@ -221,10 +216,6 @@ function renderService(s) {
         <span class="sv-badge">Services</span>
         <h1 class="sv-title">${s.title}</h1>
         <p class="sv-desc">${s.description || ''}</p>
-      </div>
-
-      <div class="sv-highlights">
-        ${highlightsHTML}
       </div>
 
       <div class="sv-divider"></div>
@@ -330,9 +321,9 @@ function servicesHTML() {
   };
   const hardcoded = [
     { id: 'pcb-design',              title: 'PCB Design',              desc: 'From schematic capture to production-ready Gerber files. Multi-layer boards, high-speed design, mixed-signal layouts. One of our engineers trained at CERN.' },
-    { id: 'embedded-programming',    title: 'Embedded Programming',    desc: 'Bare-metal and RTOS firmware. STM32, NXP, TI, Nordic. Drivers, communication protocols, power management, and OTA updates.' },
-    { id: 'mechanical-design',       title: 'Mechanical Design',       desc: '3D CAD modeling, enclosure design, and DFM for manufacturing. Our team built two complete robots that took first place at the international Eurobot 2019 competition.' },
-    { id: 'prototype-to-production', title: 'Prototype to Production', desc: 'We take you from proof-of-concept to production-ready design, and connect you with trusted manufacturers for both small-volume and large-scale production runs.' },
+    { id: 'embedded-programming',    title: 'Firmware Development',              desc: 'Bare-metal and RTOS firmware. STM32, NXP, TI, Nordic. Drivers, communication protocols, power management, and OTA updates.' },
+    { id: 'mechanical-design',       title: 'Mechatronics & Mechanical Design',  desc: 'Mechatronics engineering, 3D CAD modeling, enclosure design, and DFM for manufacturing. Our team built two complete robots that took first place at the international Eurobot 2019 competition.' },
+    { id: 'prototype-to-production', title: 'Full Product Development',           desc: 'From first idea to production-ready hardware product. Full project management, manufacturer sourcing, and bring-up support.' },
   ];
   const source = (state.services && state.services.length) ? state.services : hardcoded;
   const services = source.map(s => ({
