@@ -462,7 +462,7 @@
   title: Precision Lifting Table
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/apsara/thumbs/lift_thumb_image_1.png"
+  thumbnail: "images/projects/apsara/thumbs/lift_thumb_image.png"
   summary: "Precision Lifting Table for Warehouse Mobile Robot"
   description: |
     Precision lifting table designed and integrated onto an autonomous warehouse
@@ -481,7 +481,7 @@
     Test firmware written in embedded C was developed to verify stepper motor
     control and validate motion accuracy before deployment.
   images:
-    - "images/projects/apsara/lift_thumb_image_1.png"
+    - "images/projects/apsara/lift_thumb_image.png"
     - "images/projects/apsara/lift_main_image_2.png"
   tags:
     - Mechanical Design
@@ -522,7 +522,9 @@
     by auxiliary fingers. A fully functional prototype was built and validated.
   images:
     - "images/projects/apsara/thumbs/mini_asrs_thumb_v2.png"
+    - "images/projects/apsara/mini_asrs_thumb.png"
     - "images/projects/apsara/mini_asrs_back.png"
+    - "images/projects/apsara/mini_asrs_front.png"
   specs:
     - { key: "CAD", value: "Fusion 360" }
     - { key: "Vision", value: "IDS camera + AprilTags" }
@@ -545,7 +547,7 @@
   title: Mobile Robotics Platform with Dual UR10
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/mechanical/thumbs/ur10_thumb.png"
+  thumbnail: "images/projects/apsara/thumbs/dual_arm_stand_thumb_image_v2.png"
   summary: "Modular mobile platform integrating two UR10 manipulators on a mecanum-wheel base with deployable stabilizers."
   description: |
     Modular mobile robotic platform integrating two UR10 robotic manipulators
@@ -561,7 +563,8 @@
     loads from dual robot arm operation. Manufacturing drawings and documentation
     were produced for CNC fabrication and assembly.
   images:
-    - "images/projects/mechanical/ur10_thumb.png"
+    - "images/projects/apsara/dual_arm_stand_thumb_image_v2.png"
+    - "images/projects/apsara/bilateral_tst.png"
   specs:
     - { key: "Manipulators", value: "2× UR10" }
     - { key: "Mobility", value: "Mecanum-wheel base" }
@@ -583,7 +586,7 @@
   title: Cable-Drive Motion System for Vision
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/mechanical/thumbs/cable_drive_thumb.png"
+  thumbnail: "images/projects/apsara/thumbs/cable_drive_thumb.png"
   summary: "Compact cable-driven camera positioning system with AprilTag-based feedback, built as a functional prototype."
   description: |
     Concept and prototype of a cable-driven motion system for camera
@@ -601,7 +604,10 @@
     motor drivers, Raspberry Pi, and a 12V battery system are fully
     self-contained.
   images:
-    - "images/projects/mechanical/cable_drive_thumb.png"
+    - "images/projects/apsara/cable_drive_thumb.png"
+    - "images/projects/apsara/cable_drive_top_3.png"
+    - "images/projects/apsara/cable_drive_top_4.png"
+    - "images/projects/apsara/cable_drive_bottom.png"
   specs:
     - { key: "Actuation", value: "4× stepper motors" }
     - { key: "Feedback", value: "AprilTag vision" }
@@ -624,7 +630,7 @@
   title: Concept Automation System for CNC Vise
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/mechanical/thumbs/cnc_vise_thumb.png"
+  thumbnail: "images/projects/apsara/thumbs/cnc_vise_thumb_v2.png"
   summary: "Concept-level robotic automation system for CNC vise loading, zero positioning, and torque-controlled clamping."
   description: |
     Concept-level automation project for automating workpiece zero positioning
@@ -641,7 +647,8 @@
     Full feasibility analysis, spatial constraint evaluation, and automation
     logic were developed for CNC integration.
   images:
-    - "images/projects/mechanical/cnc_vise_thumb.png"
+    - "images/projects/apsara/cnc_vise_thumb.png"
+    - "images/projects/apsara/cnc_vise_thumb_v2.png"
   specs:
     - { key: "Robot", value: "xArm 6 (collaborative)" }
     - { key: "Vision", value: "RealSense D435i + AprilTags" }
