@@ -128,9 +128,9 @@
   icon: ti-rocket
   tagline: "From first idea to production-ready hardware product."
   description: |
-    Full hardware development — electronics, firmware, and mechanics under one roof. We take a project
-    from first architecture decisions through prototype, validation, and production handoff. No handoffs
-    between separate PCB, firmware, and mechanical contractors — one team owns the full scope.
+    Full hardware development — electronics, firmware, and mechanics under one roof. We take a project from first architecture decisions through prototype, validation, and production handoff. Design, prototyping, and production are managed through a network of vetted manufacturing partners — one point of contact for the full scope, no coordination overhead on your side.
+
+
   subs:
     - icon: ti-bulb
       title: Proof of concept

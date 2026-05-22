@@ -3,6 +3,15 @@
    Dark slate theme with green gradient accent (matching logo)
 ───────────────────────────────────────────────────────────────────────────── */
 
+/* ── Page transition ── */
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.page-enter {
+  animation: page-fade-in 0.3s ease forwards;
+}
+
 /* ── Variables ── */
 :root {
   --bg:              #0f172a;
@@ -27,7 +36,7 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
@@ -173,20 +182,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 16px;
 }
 
-/* ── Scroll reveal ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-.reveal-d1 { transition-delay: 0.08s; }
-.reveal-d2 { transition-delay: 0.16s; }
-.reveal-d3 { transition-delay: 0.24s; }
-.reveal-d4 { transition-delay: 0.32s; }
 
 /* ─────────────────────────────────────────────
    HERO
@@ -1395,7 +1390,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 17px;
   color: var(--text-muted);
   line-height: 1.75;
-  max-width: 640px;
+  max-width: 960px;
 }
 .sv-divider {
   border: none;

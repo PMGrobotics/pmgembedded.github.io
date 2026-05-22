@@ -33,47 +33,72 @@ async function loadData() {
 
 // ── Router ────────────────────────────────────────────────────────────────────
 
+function triggerFade() {
+  const app = document.getElementById('app');
+  app.classList.remove('page-enter');
+  void app.offsetWidth;
+  app.classList.add('page-enter');
+}
+
 function router() {
   document.getElementById('project-slideshow')?._removeKeyHandler?.();
   document.getElementById('lightbox')?._removeLbHandler?.();
   document.body.style.overflow = '';
-  const hash = window.location.hash;
-  const match = hash.match(/^#project\/(.+)/);
 
-  if (match) {
-    const project = state.projects.find(p => p.id === match[1]);
+  const hash = window.location.hash;
+
+  // Project detail
+  const projectMatch = hash.match(/^#project\/(.+)/);
+  if (projectMatch) {
+    const project = state.projects.find(p => p.id === projectMatch[1]);
     if (project) {
+      triggerFade();
+      window.scrollTo({ top: 0, behavior: 'instant' });
       renderProject(project);
-      window.scrollTo({ top: 0 });
       return;
     }
   }
 
+  // All projects page
   if (hash === '#all-projects') {
+    triggerFade();
+    window.scrollTo({ top: 0, behavior: 'instant' });
     renderProjectsList();
-    window.scrollTo({ top: 0 });
     return;
   }
 
+  // Service detail
   const serviceMatch = hash.match(/^#service\/(.+)/);
   if (serviceMatch) {
     const service = state.services.find(s => s.id === serviceMatch[1]);
     if (service) {
+      triggerFade();
+      window.scrollTo({ top: 0, behavior: 'instant' });
       renderService(service);
-      window.scrollTo({ top: 0 });
       return;
     }
   }
 
-  renderHome();
+  // Home page
+  const onHome = !!document.getElementById('home');
+  const sectionId = hash.replace(/^#/, '');
 
-  const sectionId = hash.replace('#', '');
-  if (['services', 'team', 'contact'].includes(sectionId)) {
-    setTimeout(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    }, 60);
-  } else if (!match) {
-    window.scrollTo({ top: 0 });
+  if (onHome) {
+    // Already on home — just scroll, no re-render, no fade
+    if (sectionId) {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'instant' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    return;
+  }
+
+  // Navigating to home from another page
+  triggerFade();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  renderHome();
+  if (sectionId) {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'instant' });
   }
 }
 
@@ -993,20 +1018,7 @@ function initNavScroll() {
   update();
 }
 
-function initScrollReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  if (!window.IntersectionObserver) {
-    els.forEach(el => el.classList.add('visible'));
-    return;
-  }
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(el => io.observe(el));
-}
+function initScrollReveal() {}
 
 function initActiveNav() {
   if (!window.IntersectionObserver) return;
