@@ -35,6 +35,8 @@ async function loadData() {
 
 function router() {
   document.getElementById('project-slideshow')?._removeKeyHandler?.();
+  document.getElementById('lightbox')?._removeLbHandler?.();
+  document.body.style.overflow = '';
   const hash = window.location.hash;
   const match = hash.match(/^#project\/(.+)/);
 
@@ -643,6 +645,15 @@ function renderProject(p) {
       ${specsHTML}
     </div>
   </div>
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+    <button class="lightbox-close" id="lb-close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-nav lb-prev" id="lb-prev" aria-label="Previous image">&#8249;</button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" id="lb-img" src="" alt="">
+    </div>
+    <button class="lightbox-nav lb-next" id="lb-next" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-counter" id="lb-counter"></div>
+  </div>
   ${othersHTML}
   ${contactHTML()}`;
 
@@ -656,10 +667,75 @@ function renderProject(p) {
   });
 
   initProjectSlideshow();
+  initLightbox(images);
   initProjectCards();
   initMoreProjectsCarousel(others);
   initContactForm();
   initScrollReveal();
+}
+
+function initLightbox(images) {
+  if (!images || !images.length) return;
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbCnt   = document.getElementById('lb-counter');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+  if (!lb || !lbImg) return;
+
+  const single = images.length === 1;
+  let current = 0;
+  let downX = 0, downY = 0;
+
+  function show(idx) {
+    current = ((idx % images.length) + images.length) % images.length;
+    lbImg.src = images[current];
+    lbImg.alt = `Image ${current + 1} of ${images.length}`;
+    if (lbCnt) lbCnt.textContent = single ? '' : `${current + 1} / ${images.length}`;
+    if (lbPrev) lbPrev.style.visibility = single ? 'hidden' : 'visible';
+    if (lbNext) lbNext.style.visibility = single ? 'hidden' : 'visible';
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 200);
+  }
+
+  document.querySelectorAll('.project-slide img').forEach((img, idx) => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('mousedown', e => { downX = e.clientX; downY = e.clientY; });
+    img.addEventListener('click', e => {
+      if (Math.abs(e.clientX - downX) > 5 || Math.abs(e.clientY - downY) > 5) return;
+      show(idx);
+    });
+  });
+
+  let lbTouchX = null;
+  lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (lbTouchX === null) return;
+    const delta = lbTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) show(delta > 0 ? current + 1 : current - 1);
+    lbTouchX = null;
+  });
+
+  lbClose?.addEventListener('click', close);
+  lbPrev?.addEventListener('click', () => show(current - 1));
+  lbNext?.addEventListener('click', () => show(current + 1));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target === document.querySelector('.lightbox-stage')) close(); });
+
+  function keyHandler(e) {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  }
+  document.addEventListener('keydown', keyHandler);
+  lb._removeLbHandler = () => document.removeEventListener('keydown', keyHandler);
 }
 
 function initProjectSlideshow() {
