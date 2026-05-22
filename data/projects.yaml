@@ -28,69 +28,86 @@
 
 - id: am1808-som
   hidden: false
-  title: AM1808 System-on-Module
+  title: AM1808 SoM – High-Performance System-on-Module Design
   client: Rabbit Hole Computing
   category: PCB Design
   thumbnail: "images/projects/alex-peres/thumbs/am1808_trans.png"
   summary: "Custom SoM based on the Texas Instruments AM1808 processor for industrial applications."
   description: |
-    A custom System-on-Module (SoM) built around the Texas Instruments AM1808
-    processor, designed for Rabbit Hole Computing LLC.
+    A custom System-on-Module built around the Texas Instruments AM1808 Sitara
+    ARM9 processor, designed for scalable embedded Linux applications including
+    HMI panels, data acquisition systems, and industrial gateways.
 
-    The module integrates the processor, power management, DDR2 memory, NAND flash,
-    and all supporting circuitry onto a compact, high-density PCB. Designed to plug
-    into a custom carrier board, it gives industrial customers a fully validated
-    compute core they can build around without redesigning the CPU circuitry from
-    scratch.
+    The module integrates DDR2 memory with tightly length-matched, impedance-
+    controlled routing, a custom PMIC with sequenced power rails (1.2 V core,
+    1.8 V I/O, 3.3 V digital/analog), and a full suite of industrial interfaces —
+    MII Ethernet with PHY-ready layout, USB Host/Device, SATA, LCD, JTAG, and
+    UART debug ports.
+
+    Boot flexibility is provided through a configurable bootstrap resistor network
+    supporting SPI, SD, and UART boot modes, with EEPROM and SPI flash for
+    bootloader and persistent storage. Designed to plug into a custom carrier
+    board, it delivers a fully validated compute core without requiring customers
+    to redesign the CPU subsystem from scratch.
   images:
     - "images/projects/alex-peres/am1808_trans.png"
   tags:
     - PCB Design
-    - SoM
     - TI AM1808
-    - Industrial
-    - High-Density Layout
+    - Embedded Linux
+    - DDR2 Layout
+    - Power Management
+    - High-Speed Routing
   specs:
-    - { key: "MCU", value: "TI AM1808" }
-    - { key: "Memory", value: "DDR2 + NAND flash" }
-    - { key: "Form factor", value: "SoM" }
-    - { key: "Application", value: "Industrial" }
-  highlights:
-    - { icon: "ti-cpu", title: "High-density layout", desc: "Full CPU subsystem on compact SoM with mixed-signal design" }
-    - { icon: "ti-plug", title: "Carrier board ready", desc: "Plug into custom carrier without redesigning CPU circuitry" }
-    - { icon: "ti-shield-check", title: "Production validated", desc: "Full bring-up including power, memory, and peripheral testing" }
+    - { key: "Processor",    value: "TI AM1808 Sitara ARM9" }
+    - { key: "Memory",       value: "DDR2 SDRAM + SPI Flash + EEPROM" }
+    - { key: "Interfaces",   value: "MII Ethernet, USB Host/Device, SATA, LCD" }
+    - { key: "Debug",        value: "JTAG + UART" }
+    - { key: "Boot modes",   value: "SPI / SD / UART (configurable)" }
+    - { key: "Power rails",  value: "1.2 V core, 1.8 V I/O, 3.3 V digital/analog" }
+    - { key: "Form factor",  value: "SoM + carrier board" }
+    - { key: "Application",  value: "Industrial / Embedded Linux" }
 
 - id: mpc8313-powerquic
   hidden: false
-  title: MPC8313E PowerQUIC II
+  title: MPC8313E SoM – PowerQUICC II Industrial Embedded Platform
   client: Rabbit Hole Computing
   category: PCB Design
   thumbnail: "images/projects/alex-peres/thumbs/main_image_v2.png"
   summary: "Custom embedded computing board based on the NXP MPC8313E PowerQUIC II processor."
   description: |
-    A custom board design based on the NXP MPC8313E PowerQUIC II processor,
-    designed for Rabbit Hole Computing LLC.
+    A custom System-on-Module built around the NXP MPC8313E PowerQUICC II Pro
+    processor, designed for demanding embedded Linux applications including
+    networking appliances, industrial gateways, and data acquisition platforms.
 
-    The design integrates DDR2 SDRAM, NAND and NOR flash, dual Ethernet ports,
-    USB, and a range of serial interfaces on a single board — targeting networking
-    appliances and industrial control applications that need a capable, Linux-ready
-    processor without the overhead of an x86 platform.
+    The module features dual RGMII Gigabit Ethernet with differential pair tuning
+    and isolation, PCIe and USB 2.0 with impedance-controlled differential routing,
+    and a high-density DDR2 memory interface with full length matching across an
+    8-layer stackup. A sequenced multi-rail power tree delivers 1.0 V, 1.8 V,
+    2.5 V, and 3.3 V domains with over 100 low-ESR decoupling capacitors and
+    ferrite filters throughout.
+
+    All I/O interfaces include ESD and EMI protection. JTAG, UART, I²C, and GPIO
+    expansion headers are provided for development and factory diagnostics. Design
+    files are fully optimized for manufacturing yield and EMI/EMC compliance.
   images:
     - "images/projects/alex-peres/main_image_v2.png"
   tags:
     - PCB Design
-    - NXP
-    - PowerQUIC
-    - Embedded Computing
-    - Networking
+    - NXP MPC8313E
+    - Embedded Linux
+    - DDR2 Layout
+    - High-Speed Routing
+    - Signal Integrity
   specs:
-    - { key: "MCU", value: "NXP MPC8313E" }
-    - { key: "Memory", value: "DDR2 + NAND + NOR" }
-    - { key: "Interfaces", value: "Dual Ethernet, USB" }
-    - { key: "Application", value: "Networking / Industrial" }
-  highlights:
-    - { icon: "ti-network", title: "Linux-ready", desc: "Capable processor without x86 overhead, ready for embedded Linux" }
-    - { icon: "ti-server", title: "Rich peripherals", desc: "Dual Ethernet, USB, and serial interfaces on a single board" }
+    - { key: "Processor",    value: "NXP MPC8313E PowerQUICC II Pro" }
+    - { key: "Memory",       value: "DDR2 SDRAM (length-matched, impedance-controlled)" }
+    - { key: "Ethernet",     value: "2× Gigabit RGMII with PHY" }
+    - { key: "Interfaces",   value: "PCIe, USB 2.0, I²C, GPIO" }
+    - { key: "Debug",        value: "JTAG + UART" }
+    - { key: "Power rails",  value: "1.0 V / 1.8 V / 2.5 V / 3.3 V sequenced" }
+    - { key: "PCB",          value: "8-layer, 1000+ nets" }
+    - { key: "Application",  value: "Networking / Industrial / Embedded Linux" }
 
 - id: smart-suitcase
   hidden: true
@@ -116,77 +133,87 @@
 
 - id: jetson-carrier-board
   hidden: false
-  title: Jetson Xavier NX Carrier Board
+  title: Jetson Xavier NX Carrier Board – High-Density Embedded AI Platform
   client: Lincon Cavalieri
   category: PCB Design
   thumbnail: "images/projects/lincon-cavalieri/thumbs/main_image_v2.png"
   summary: "High-density custom carrier board for the NVIDIA Jetson Xavier NX AI compute module."
   description: |
     A compact, high-density carrier board designed to host the NVIDIA Jetson Xavier
-    NX system-on-module, targeting edge AI and machine vision applications.
+    NX system-on-module, targeting edge AI, robotics, machine vision, and industrial
+    automation applications.
 
-    The board breaks out the module's high-speed interfaces — PCIe, USB 3.0,
-    Gigabit Ethernet, MIPI CSI camera lanes, and GPIO — onto application-specific
-    connectors sized for the target enclosure. Particular attention was given to
-    high-speed signal integrity: controlled-impedance routing, proper reference
-    plane management, and decoupling strategy for the Jetson's LPDDR4x memory
-    interface.
+    The board breaks out the module's high-speed interfaces across a 6-layer
+    impedance-controlled stackup — PCIe Gen3 x4 with tight skew control, dual
+    USB 3.1 and USB 2.0 with differential routing, HDMI with full TMDS compliance
+    and hot-plug detection, and MIPI CSI camera lanes with shielded, noise-isolated
+    routing. An M.2 Key-E slot supports Wi-Fi/BT modules via SDIO, PCIe, and UART.
 
-    PMG Robotics handled the full PCB design and layout, including thermal
-    management provisions for sustained AI inference workloads.
+    A multistage power sequencing system manages 1.8 V, 3.3 V, and 5 V rails with
+    synchronized enable signals and reset logic for both the module and all
+    peripherals. eFuse and recovery logic ensure safe OTA updates and power
+    recovery. Expansion headers expose I²C, SPI, UART, CAN, and GPIO for
+    application-specific integration.
   images:
     - "images/projects/lincon-cavalieri/main_image_v2.png"
   tags:
     - PCB Design
     - NVIDIA Jetson
     - Edge AI
-    - High-Speed Design
+    - High-Speed Routing
     - Signal Integrity
+    - MIPI CSI
   specs:
-    - { key: "Module", value: "NVIDIA Jetson Xavier NX" }
-    - { key: "Interfaces", value: "PCIe, USB 3.0, GbE, MIPI CSI" }
-    - { key: "Application", value: "Edge AI / Machine Vision" }
-    - { key: "Focus", value: "Signal Integrity" }
-  highlights:
-    - { icon: "ti-brain", title: "Edge AI ready", desc: "Designed for sustained AI inference workloads with thermal management" }
-    - { icon: "ti-wave-sine", title: "Signal integrity", desc: "Controlled-impedance routing and proper reference plane management" }
-    - { icon: "ti-camera", title: "MIPI CSI lanes", desc: "Multiple camera lanes broken out for machine vision applications" }
+    - { key: "Module",       value: "NVIDIA Jetson Xavier NX" }
+    - { key: "PCB",          value: "6-layer impedance-controlled" }
+    - { key: "Video",        value: "HDMI (TMDS) + MIPI CSI camera" }
+    - { key: "High-speed",   value: "PCIe Gen3 x4, USB 3.1, USB 2.0" }
+    - { key: "Wireless",     value: "M.2 Key-E (Wi-Fi/BT)" }
+    - { key: "Expansion",    value: "I²C, SPI, UART, CAN, GPIO" }
+    - { key: "Power rails",  value: "1.8 V / 3.3 V / 5 V sequenced" }
+    - { key: "Application",  value: "Edge AI / Robotics / Machine Vision" }
 
 - id: usb-hub
   hidden: false
-  title: Industrial USB Hub
+  title: Industrial USB Hub – High-Speed USB 3.1 Gen1 Hub with Power Management
   client: Alterra
   category: PCB Design
   thumbnail: "images/projects/liam-burns/thumbs/tst_500.png"
   summary: "Four-port USB 3.0 hub with industrial power input and per-port power management."
   description: |
-    A ruggedized four-port USB 3.0 hub PCB designed for industrial and embedded
-    computing applications where standard consumer hubs fall short on power
-    handling and reliability.
+    A custom 4-port USB hub built around the Microchip USB5744 controller,
+    supporting simultaneous USB 2.0 and USB 3.1 Gen1 (5 Gbps) operation.
+    Designed for integration into industrial and consumer electronics where
+    signal integrity, power stability, and compact layout are critical.
 
-    The board accepts a wide-range DC input via screw terminals, runs an onboard
-    switching regulator to generate a stable 5 V bus for the USB ports, and
-    incorporates per-port power switches with overcurrent protection. A dedicated
-    USB hub controller IC manages enumeration and bandwidth allocation across all
-    four downstream ports.
+    High-speed differential pairs (SSRX, SSTX) are routed with strict impedance
+    control, minimal stub length, and careful via placement to support full 5 Gbps
+    throughput. ESD protection is provided on all upstream and downstream connectors.
+    Precision clocking is handled by a 25 MHz low-jitter crystal oscillator.
 
-    The design includes full reset circuitry, status LEDs for each port, and
-    test points throughout for production verification.
+    Power delivery uses a multi-stage conversion (DC-DC buck + LDO) to generate
+    stable 1.2 V and 3.3 V rails from a single DC input. Per-port power switching
+    is managed by dual MIC2019 controllers with current limiting, fault detection,
+    and individual control signals. Bootstrap and SPI access allow custom
+    configuration and production test access.
   images:
     - "images/projects/liam-burns/tst_500.png"
   tags:
     - PCB Design
-    - USB 3.0
+    - USB 3.1
+    - Signal Integrity
     - Power Management
+    - Microchip USB5744
     - Industrial
   specs:
-    - { key: "Ports", value: "4× USB 3.0" }
-    - { key: "Input", value: "Wide-range DC" }
-    - { key: "Protection", value: "Per-port overcurrent" }
-    - { key: "Application", value: "Industrial" }
-  highlights:
-    - { icon: "ti-shield", title: "Overcurrent protection", desc: "Per-port power switches protect downstream devices" }
-    - { icon: "ti-bolt", title: "Onboard regulation", desc: "Switching regulator generates stable 5V bus from wide DC input" }
+    - { key: "Controller",   value: "Microchip USB5744" }
+    - { key: "USB standard", value: "USB 3.1 Gen1 (5 Gbps) + USB 2.0" }
+    - { key: "Ports",        value: "4× downstream (2 with full SS routing)" }
+    - { key: "Power switch", value: "Dual MIC2019 (per-port, overcurrent protected)" }
+    - { key: "Power rails",  value: "5 V in → 3.3 V + 1.2 V (buck + LDO)" }
+    - { key: "Clocking",     value: "25 MHz low-jitter crystal" }
+    - { key: "Protection",   value: "ESD on all connectors" }
+    - { key: "Application",  value: "Industrial / Consumer Electronics" }
 
 - id: signal-integrity-and-emi-emc
   hidden: false
@@ -197,26 +224,26 @@
   summary: "Signal integrity simulation and pre-compliance EMI/EMC analysis for high-speed differential interfaces up to 10+ Gbps."
   description: |
     We help companies ensure signal reliability and electromagnetic compliance in
-    complex, high-speed designs. Whether a project is preparing for certification or
-    troubleshooting critical signal issues, we bring the simulation tools and
-    hands-on experience to make the design robust.
+    complex, high-speed designs — whether preparing for certification or
+    troubleshooting critical issues before they reach production.
 
-    Our signal integrity work covers TDR analysis for precise impedance matching and
-    discontinuity detection, eye diagram simulation to quantify signal quality and
-    noise margins, and S-parameter characterization for frequency-domain analysis of
-    differential and single-ended pairs. Crosstalk analysis rounds out the picture,
-    identifying which adjacent signals are most affected and by how much.
+    Our signal integrity work covers TDR analysis for impedance matching and
+    discontinuity detection, eye diagram simulation with extracted post-layout
+    parasitics, and S-parameter characterization up to 10+ GHz for differential
+    and single-ended pairs. 3D crosstalk analysis identifies which adjacent nets
+    are most affected, with near-end and far-end coupling visualized separately
+    to guide layout optimization.
 
-    On the EMC side, we perform near-field and far-field emission measurements,
-    helping identify and address radiated emissions before formal compliance testing.
-    We also provide design reviews covering grounding strategy, layer stackup,
-    return path management, and differential routing best practices.
+    On the EMC side, we perform near-field E and H-field measurements 2–3 mm above
+    the PCB surface to identify emission hotspots at fundamental and harmonic
+    frequencies, as well as far-field analysis at 1 m distance for pre-compliance
+    evaluation against CISPR and FCC standards. We also provide design reviews
+    covering stackup, grounding strategy, return path management, and differential
+    routing best practices.
 
-    This service is well suited for designs involving USB 3.x, PCIe, DDR/LPDDR,
-    HDMI, Ethernet, or other high-speed interfaces. We have worked on designs up to
-    10+ Gbps and combine simulation with practical layout adjustments to close issues
-    efficiently. Tools used include Ansys, HyperLynx, and LTspice, alongside custom
-    test setups for TDR, crosstalk, and emissions measurement.
+    Well suited for designs involving USB 3.x, PCIe, DDR/LPDDR, HDMI, and
+    Ethernet. Tools used include Ansys, HyperLynx, and LTspice, combined with
+    custom TDR and emissions test setups.
   images:
     - "images/projects/signal-integrity-and-emi-emc/eye_1.png"
     - "images/projects/signal-integrity-and-emi-emc/eye_2.png"
@@ -231,19 +258,19 @@
   tags:
     - Signal Integrity
     - EMI/EMC
+    - TDR Analysis
+    - Eye Diagram
+    - Pre-Compliance
     - High-Speed Design
-    - ANSYS
-    - PCB Analysis
-    - Simulation
   specs:
-    - { key: "Max speed", value: "10+ Gbps" }
-    - { key: "Analysis", value: "TDR, Eye diagram, S-param" }
-    - { key: "Tools", value: "Ansys, HyperLynx, LTspice" }
-    - { key: "Interfaces", value: "USB 3.x, PCIe, DDR, HDMI" }
-  highlights:
-    - { icon: "ti-wave-sine", title: "Signal integrity", desc: "TDR, eye diagrams, S-parameters, and crosstalk analysis" }
-    - { icon: "ti-radio", title: "EMI/EMC analysis", desc: "Near and far-field emission measurements before formal compliance" }
-    - { icon: "ti-checklist", title: "Design review", desc: "Grounding, stackup, return paths, and differential routing review" }
+    - { key: "Max speed",      value: "10+ Gbps" }
+    - { key: "SI analysis",    value: "TDR, Eye diagram, S-parameters" }
+    - { key: "EMC analysis",   value: "Near-field E/H, Far-field (1 m)" }
+    - { key: "Crosstalk",      value: "Near-end & far-end, 3D peak voltage" }
+    - { key: "Standards",      value: "CISPR, FCC pre-compliance" }
+    - { key: "Interfaces",     value: "USB 3.x, PCIe, DDR/LPDDR, HDMI, Ethernet" }
+    - { key: "Tools",          value: "Ansys, HyperLynx, LTspice" }
+    - { key: "Service type",   value: "Simulation, Analysis & Design Review" }
 
 - id: qa-maestro-pmu
   hidden: false
@@ -279,31 +306,31 @@
     - { key: "Input", value: "12V system power" }
     - { key: "Output", value: "3.3V regulated rails" }
     - { key: "Interface", value: "USB firmware update" }
-  highlights:
-    - { icon: "ti-cpu", title: "STM32 supervision", desc: "Rail sequencing, voltage monitoring, and reset control" }
-    - { icon: "ti-usb", title: "USB debug port", desc: "In-field firmware updates without disassembly" }
 
 - id: smart-lock-keivan
   hidden: false
-  title: Smart Bike Lock
+  title: Smart Lock – Cellular-Connected Bike Lock System
   client: Bikely
   category: PCB Design & Embedded Programming
   thumbnail: "images/projects/smart-lock-keivan/thumbs/main_image.png"
   summary: "Ultra-low-power IoT bike lock with NB-IoT connectivity and remote control."
   description: |
-    Bikely is a smart bike lock designed to give cyclists keyless, app-controlled
-    security without relying on Wi-Fi or Bluetooth range. The electronics are built
-    around an STM32L071CBT6 microcontroller (Arm Cortex-M0+, 32 MHz) chosen for
-    its extremely low active and standby current draw.
+    A compact, highly integrated electronic locking system developed for
+    IoT-enabled bicycle security. The design combines NB-IoT connectivity,
+    precision motor control, and environmental sensing into a rugged, battery-
+    efficient package sized for tight mechanical integration.
 
-    The locking mechanism is driven by a DC motor controlled through a DRV8210
-    integrated motor driver, providing precise and reliable lock/unlock actuation.
-    Connectivity is handled by a Quectel BG95-M2 NB-IoT module with an embedded
-    SIM, giving the lock a nationwide cellular footprint with no infrastructure
-    dependency.
+    Connectivity is handled by a Quectel BG95-M2 NB-IoT module with a ceramic
+    antenna precisely matched by an external RF lab, supporting full OTA firmware
+    updates. The STM32L071 MCU was selected for its ultra-low active and standby
+    current, extended by a TPS63070 buck-boost converter generating a stable 3.5 V
+    system rail and a dedicated 6 V motor rail. The DRV8210 motor driver provides
+    configurable current limiting for reliable lock/unlock actuation.
 
-    PMG Robotics was responsible for the full hardware design, multilayer PCB
-    layout, and embedded firmware development from bring-up through production.
+    Lock position feedback is provided by dual limit switches and a photo sensor
+    with filtered inputs and careful grounding for noise immunity. Dual eSIM and
+    nano SIM interfaces include ESD protection. An RGB status LED and UART debug
+    port are provided for diagnostics and field service.
   images:
     - "images/projects/smart-lock-keivan/main_image.png"
     - "images/projects/smart-lock-keivan/image_final_box.png"
@@ -313,17 +340,17 @@
     - Embedded Programming
     - STM32
     - NB-IoT
-    - IoT
     - Ultra-Low-Power
+    - IoT
   specs:
-    - { key: "MCU", value: "STM32L071CBT6" }
-    - { key: "Connectivity", value: "NB-IoT (Quectel BG95-M2)" }
-    - { key: "Motor driver", value: "DRV8210" }
-    - { key: "SIM", value: "Embedded eSIM" }
-  highlights:
-    - { icon: "ti-battery", title: "Ultra-low-power", desc: "Cortex-M0+ with deep sleep for maximum battery life" }
-    - { icon: "ti-antenna", title: "NB-IoT nationwide", desc: "Cellular connectivity with no Wi-Fi or Bluetooth dependency" }
-    - { icon: "ti-lock", title: "Full product", desc: "Hardware, PCB layout, and firmware from bring-up to production" }
+    - { key: "MCU",          value: "STM32L071 (Cortex-M0+, ultra-low-power)" }
+    - { key: "Connectivity", value: "NB-IoT — Quectel BG95-M2 + OTA support" }
+    - { key: "Antenna",      value: "Ceramic, RF lab-tuned matching network" }
+    - { key: "Motor driver", value: "DRV8210, 6 V rail, configurable current limit" }
+    - { key: "Power",        value: "TPS63070 buck-boost, 3.5 V + 6 V rails" }
+    - { key: "SIM",          value: "eSIM + nano SIM dual interface" }
+    - { key: "Feedback",     value: "Dual limit switches + photo sensor" }
+    - { key: "Application",  value: "IoT / Smart Lock / Bicycle Security" }
 
 - id: sagitta
   hidden: false
@@ -352,9 +379,6 @@
     - { key: "Application", value: "Satellite attitude" }
     - { key: "Output", value: "Quaternion data" }
     - { key: "Category", value: "Space hardware" }
-  highlights:
-    - { icon: "ti-stars", title: "Star pattern matching", desc: "On-board algorithm outputs quaternion attitude to satellite OBC" }
-    - { icon: "ti-shield-check", title: "High reliability", desc: "Firmware built for strict space mission constraints" }
 
 - id: twinkle
   hidden: false
@@ -382,9 +406,6 @@
     - { key: "Platform", value: "Nanosatellite" }
     - { key: "Focus", value: "SWaP optimized" }
     - { key: "Output", value: "Optical attitude data" }
-  highlights:
-    - { icon: "ti-stars", title: "Miniaturized", desc: "Same precision as larger systems in nanosatellite form factor" }
-    - { icon: "ti-battery", title: "Low power", desc: "Designed within strict size, weight, and power constraints" }
 
 - id: iot-sensor-node
   hidden: false
@@ -422,16 +443,13 @@
     - { key: "Power", value: "CR3032 coin cell" }
     - { key: "Sensors", value: "Gyro, pressure, temp" }
     - { key: "Debug", value: "SWD + UART" }
-  highlights:
-    - { icon: "ti-battery", title: "Coin-cell life", desc: "Deep sleep architecture for extended battery operation" }
-    - { icon: "ti-chart-dots", title: "3 sensors", desc: "Gyroscope, barometric pressure, and temperature in one node" }
 
 - id: lorawan-energy-meter
   hidden: false
   title: LoRaWAN Energy Meter
   client: Jan Kerkel
   category: PCB Design & Embedded Programming
-  thumbnail: ""
+  thumbnail: "images/projects/jan-kerkel/thumbs/lorawan_top.png"
   summary: "Low-power energy meter with LoRaWAN wireless connectivity for remote monitoring."
   description: |
     A LoRaWAN-connected energy meter intended for remote monitoring of power
@@ -452,9 +470,6 @@
     - { key: "Connectivity", value: "LoRaWAN" }
     - { key: "Power", value: "Primary cell battery" }
     - { key: "Range", value: "Long-range uplink" }
-  highlights:
-    - { icon: "ti-antenna", title: "LoRaWAN", desc: "Long-range uplinks without cellular or Wi-Fi infrastructure" }
-    - { icon: "ti-battery", title: "Years of battery life", desc: "Ultra-low standby current for remote unattended deployment" }
 
 
 - id: Lift
@@ -465,39 +480,41 @@
   thumbnail: "images/projects/apsara/thumbs/lift_thumb_image.png"
   summary: "Precision Lifting Table for Warehouse Mobile Robot"
   description: |
-    Precision lifting table designed and integrated onto an autonomous warehouse
-    robot, enabling accurate vertical positioning for material handling operations.
+    A precision lifting table designed and integrated onto an autonomous warehouse
+    robot, enabling accurate vertical positioning for material handling operations
+    in high-throughput logistics environments.
 
-    The mechanical system is built around a ball screw drive mechanism with linear
-    guide rails, delivering reliable ±1 mm positioning accuracy. Component
-    selection covered the full drivetrain — stepper motor with brake, ball screw,
-    linear blocks, and couplings — with all calculations performed in-house.
+    The mechanical system is built around a ball screw drive with linear guide
+    rails, delivering reliable ±1 mm positioning accuracy under load. Full
+    drivetrain component selection was performed in-house — stepper motor with
+    brake, ball screw, linear blocks, and couplings — with all sizing calculations
+    validated before procurement.
 
-    Full 3D CAD models, assemblies, and manufacturing drawings were created in
+    Complete 3D CAD models, assemblies, and manufacturing drawings were created in
     Autodesk Inventor. Custom-machined parts were sourced and coordinated with
-    external manufacturers, followed by complete mechanical assembly and system
-    integration including wiring.
-
-    Test firmware written in embedded C was developed to verify stepper motor
-    control and validate motion accuracy before deployment.
+    external manufacturers, followed by full mechanical assembly and system
+    integration including wiring. Test firmware written in embedded C was developed
+    to verify stepper motor control and validate motion accuracy before deployment
+    on the robot platform.
   images:
     - "images/projects/apsara/lift_thumb_image.png"
     - "images/projects/apsara/lift_main_image_2.png"
   tags:
     - Mechanical Design
-    - Prototyping
     - Mechatronics
+    - Prototyping
+    - Ball Screw
     - Embedded C
+    - Warehouse Robotics
   specs:
-    - { key: "Accuracy", value: "±1 mm" }
-    - { key: "Drive", value: "Ball screw + stepper" }
-    - { key: "CAD", value: "Autodesk Inventor" }
-    - { key: "Firmware", value: "Embedded C" }
-    - { key: "Application", value: "Warehouse AMR" }
-  highlights:
-    - { icon: "ti-ruler-measure", title: "±1 mm accuracy", desc: "Ball screw and linear guide rails for precise positioning" }
-    - { icon: "ti-tools", title: "Full mechanical", desc: "3D CAD, manufacturing drawings, sourcing, and assembly" }
-    - { icon: "ti-code", title: "Test firmware", desc: "Embedded C firmware for motor control and motion verification" }
+    - { key: "Accuracy",       value: "±1 mm positioning" }
+    - { key: "Drive",          value: "Ball screw + stepper motor with brake" }
+    - { key: "Guiding",        value: "Linear guide rails + linear blocks" }
+    - { key: "CAD",            value: "Autodesk Inventor" }
+    - { key: "Firmware",       value: "Embedded C — stepper control & motion verify" }
+    - { key: "Manufacturing",  value: "Custom-machined parts, external sourcing" }
+    - { key: "Integration",    value: "Full mechanical assembly + wiring" }
+    - { key: "Application",    value: "Warehouse AMR — vertical positioning" }
     
 
 - id: mini-asrs
@@ -509,38 +526,43 @@
   summary: "Automated storage and retrieval system for sorting small parts using AprilTag vision and a custom parallel gripper."
   description: |
     Design and development of a mini automated storage and retrieval system
-    (ASRS) for handling and sorting small parts — screws, nuts, washers —
-    stored in standardized boxes.
+    for handling and sorting small parts — screws, nuts, and washers — stored
+    in standardized boxes. A fully functional prototype was built and validated.
 
-    Boxes are identified using AprilTags detected by an IDS industrial camera.
-    A custom parallel gripper with designed fingers picks and separates boxes
-    automatically across X, Y, and Z axes driven by linear actuators.
+    Boxes are identified using AprilTags detected by an IDS industrial camera
+    mounted on a custom-designed positioning bracket. A parallel EGB gripper
+    with custom-designed fingers picks and separates individual boxes across
+    X, Y, and Z axes driven by linear actuators on an aluminum and 3D-printed
+    frame structure.
 
-    A dual-stage Z-axis was developed — main Z motion for box positioning and
-    a secondary 50 mm actuator for vertical gripper compliance. A separation
-    mechanism allows one box to be extracted while adjacent boxes are restrained
-    by auxiliary fingers. A fully functional prototype was built and validated.
+    A dual-stage Z-axis was developed to handle both primary box positioning
+    and a secondary 50 mm actuator stage for vertical gripper compliance during
+    extraction. A dedicated separation mechanism allows one box to be extracted
+    while adjacent boxes are actively restrained by auxiliary fingers, enabling
+    reliable operation in high-density storage configurations. All custom metal
+    and polymer components were designed in Fusion 360 and fabricated for
+    prototype assembly and validation.
   images:
     - "images/projects/apsara/thumbs/mini_asrs_thumb_v2.png"
     - "images/projects/apsara/mini_asrs_thumb.png"
     - "images/projects/apsara/mini_asrs_back.png"
     - "images/projects/apsara/mini_asrs_front.png"
   specs:
-    - { key: "CAD", value: "Fusion 360" }
-    - { key: "Vision", value: "IDS camera + AprilTags" }
-    - { key: "Gripper", value: "EGB parallel gripper" }
-    - { key: "Motion", value: "X/Y/Z linear actuators" }
-    - { key: "Status", value: "Delivered" }
-  highlights:
-    - { icon: "ti-eye", title: "Vision-based sorting", desc: "AprilTag detection via IDS industrial camera for automatic box classification" }
-    - { icon: "ti-hand-grab", title: "Custom gripper", desc: "Parallel gripper with custom fingers and dual-stage Z-axis for precise picking" }
-    - { icon: "ti-checkup-list", title: "Validated prototype", desc: "Full functional prototype built, assembled, and tested on-site" }
+    - { key: "Vision",        value: "IDS industrial camera + AprilTag detection" }
+    - { key: "Gripper",       value: "EGB parallel gripper, custom fingers" }
+    - { key: "Motion axes",   value: "X / Y / Z linear actuators" }
+    - { key: "Z-axis",        value: "Dual-stage: main + 50 mm compliance actuator" }
+    - { key: "Separation",    value: "Auxiliary fingers — single box extraction" }
+    - { key: "Frame",         value: "Custom aluminum + 3D-printed components" }
+    - { key: "CAD",           value: "Fusion 360" }
+    - { key: "Status",        value: "Functional prototype — built & validated" }
   tags:
     - Mechanical Design
     - ASRS
-    - Fusion 360
     - Machine Vision
+    - Custom Gripper
     - Linear Motion
+    - Fusion 360
 
 - id: mobile-robotics-platform
   hidden: false
@@ -550,37 +572,42 @@
   thumbnail: "images/projects/apsara/thumbs/dual_arm_stand_thumb_image_v2.png"
   summary: "Modular mobile platform integrating two UR10 manipulators on a mecanum-wheel base with deployable stabilizers."
   description: |
-    Modular mobile robotic platform integrating two UR10 robotic manipulators
-    on a Vention aluminum-frame structure with mecanum-wheel mobility.
+    A modular mobile robotic platform integrating two UR10 manipulators on a
+    Vention aluminum-frame structure with mecanum-wheel mobility, developed for
+    flexible industrial and R&D applications requiring precise manipulation and
+    high configurability.
 
-    The complete mechanical architecture was designed in Autodesk Inventor,
-    including full integration layout for dual UR10 arms. Custom laser-cut
-    mounting plates, actuator brackets, mecanum-wheel holders, and 3D-printed
-    camera mounts were developed. Four Firgelli linear actuators serve as
-    deployable stabilizers during manipulation.
+    The complete mechanical architecture was designed in Autodesk Inventor using
+    the Vention MachineBuilder environment, covering the full integration layout
+    for both UR10 arms. Custom laser-cut mounting plates, actuator brackets,
+    mecanum-wheel holders, and 3D-printed camera mounts were developed alongside
+    a preassembled mecanum-wheel drive module integrated into the chassis.
 
-    Mechanical sizing and structural layout were performed to withstand dynamic
-    loads from dual robot arm operation. Manufacturing drawings and documentation
-    were produced for CNC fabrication and assembly.
+    Four Firgelli linear actuators serve as deployable stabilizers, extending
+    outward during manipulation to counteract dynamic loads from dual-arm
+    operation. Component selection, mechanical sizing, and structural layout were
+    validated for the combined load envelope of two UR10 arms at full extension.
+    Manufacturing drawings and documentation were produced for CNC fabrication
+    and assembly.
   images:
     - "images/projects/apsara/dual_arm_stand_thumb_image_v2.png"
     - "images/projects/apsara/bilateral_tst.png"
   specs:
-    - { key: "Manipulators", value: "2× UR10" }
-    - { key: "Mobility", value: "Mecanum-wheel base" }
-    - { key: "Frame", value: "Vention aluminum profiles" }
-    - { key: "Stabilizers", value: "4× Firgelli linear actuators" }
-    - { key: "CAD", value: "Autodesk Inventor" }
-  highlights:
-    - { icon: "ti-robot", title: "Dual UR10 integration", desc: "Full mechanical architecture for two robotic arms on a single mobile platform" }
-    - { icon: "ti-arrows-move", title: "Mecanum mobility", desc: "Omnidirectional movement with preassembled mecanum-wheel drive module" }
-    - { icon: "ti-adjustments", title: "Deployable stabilizers", desc: "Four linear actuators deployed during manipulation for structural stability" }
+    - { key: "Manipulators",   value: "2× UR10 robotic arms" }
+    - { key: "Mobility",       value: "Mecanum-wheel drive module" }
+    - { key: "Frame",          value: "Vention aluminum profiles + MachineBuilder" }
+    - { key: "Stabilizers",    value: "4× Firgelli linear actuators (deployable)" }
+    - { key: "Custom parts",   value: "Laser-cut plates, brackets, 3D-printed mounts" }
+    - { key: "CAD",            value: "Autodesk Inventor" }
+    - { key: "Docs",           value: "Manufacturing drawings for CNC fabrication" }
+    - { key: "Application",    value: "Industrial / R&D mobile manipulation" }
   tags:
     - Mechanical Design
     - Robotics Integration
-    - Autodesk Inventor
     - Modular Systems
-
+    - Autodesk Inventor
+    - Mecanum Wheel
+    - UR10
 - id: cable-drive-motion
   hidden: false
   title: Cable-Drive Motion System for Vision
@@ -589,40 +616,44 @@
   thumbnail: "images/projects/apsara/thumbs/cable_drive_thumb.png"
   summary: "Compact cable-driven camera positioning system with AprilTag-based feedback, built as a functional prototype."
   description: |
-    Concept and prototype of a cable-driven motion system for camera
-    positioning, developed as a mini test platform to validate mechanical
-    architecture and control strategies before scaling to a larger system.
+    Concept and prototype of a cable-driven motion system for camera positioning,
+    developed as a mini test platform mounted on an existing warehouse machine.
+    The goal was to validate mechanical architecture, sensing concepts, and control
+    strategies before scaling to a larger system capable of handling heavy loads.
 
-    Four stepper motors drive individual cable drums. Fixed and double movable
-    pulleys enable smooth cable winding regardless of camera position. Vision
-    feedback is provided by cameras observing rotating rings with AprilTags
-    mounted on each drum.
+    Four stepper motors each drive an individual cable drum. A combination of fixed
+    and double movable pulleys enables smooth cable winding regardless of camera
+    position or cable angle. Vision-based position feedback is provided by cameras
+    observing AprilTag-marked rotating rings mounted on each drum, eliminating the
+    need for encoder hardware on the drums themselves.
 
-    All custom parts were designed for additive manufacturing — 3D-printed
-    polymer for complex geometries, stainless steel for high-load brackets,
-    and aluminum base plate for structural rigidity. Electronics including
-    motor drivers, Raspberry Pi, and a 12V battery system are fully
-    self-contained.
+    All custom components were designed for additive manufacturing in Fusion 360,
+    with material selection based on function — 3D-printed polymer for complex
+    geometries, stainless steel for high-load double-pulley brackets, and an
+    aluminum base plate for structural rigidity. Power and control electronics,
+    including motor drivers, Raspberry Pi, and a 12 V battery system, are fully
+    self-contained. Full manufacturing documentation was produced: CAD assemblies,
+    production files, BOM, and assembly instructions.
   images:
     - "images/projects/apsara/cable_drive_thumb.png"
     - "images/projects/apsara/cable_drive_top_3.png"
     - "images/projects/apsara/cable_drive_top_4.png"
     - "images/projects/apsara/cable_drive_bottom.png"
   specs:
-    - { key: "Actuation", value: "4× stepper motors" }
-    - { key: "Feedback", value: "AprilTag vision" }
-    - { key: "CAD", value: "Fusion 360" }
-    - { key: "Controller", value: "Raspberry Pi" }
-    - { key: "Power", value: "12V self-contained" }
-  highlights:
-    - { icon: "ti-viewfinder", title: "Cable-driven positioning", desc: "Four-motor system with custom drums and pulley routing for smooth multi-axis motion" }
-    - { icon: "ti-eye", title: "Vision feedback", desc: "AprilTag-based position tracking using industrial cameras on each drum" }
-    - { icon: "ti-printer", title: "Additive manufacturing", desc: "All custom parts optimised for 3D printing with stainless steel where needed" }
+    - { key: "Actuation",      value: "4× stepper motors, individual cable drums" }
+    - { key: "Cable routing",  value: "Fixed + double movable pulleys" }
+    - { key: "Feedback",       value: "AprilTag vision on rotating drum rings" }
+    - { key: "Controller",     value: "Raspberry Pi + motor drivers" }
+    - { key: "Power",          value: "12 V self-contained battery system" }
+    - { key: "Materials",      value: "PLA / stainless steel / aluminum base" }
+    - { key: "CAD",            value: "Fusion 360 — print-optimized components" }
+    - { key: "Status",         value: "Functional prototype — built & tested" }
   tags:
     - Mechanical Design
     - Cable-Driven Systems
     - Mechatronics
     - Fusion 360
+    - AprilTag Vision
     - Prototyping
 
 - id: cnc-vise-automation
@@ -633,35 +664,37 @@
   thumbnail: "images/projects/apsara/thumbs/cnc_vise_thumb_v2.png"
   summary: "Concept-level robotic automation system for CNC vise loading, zero positioning, and torque-controlled clamping."
   description: |
-    Concept-level automation project for automating workpiece zero positioning
-    and clamping inside a CNC vise, enabling robotic loading with automated
-    CNC machine operation.
+    Concept-level automation system for robotic workpiece loading, zero positioning,
+    and clamping inside a CNC vise, enabling automated CNC machine operation without
+    manual intervention.
 
-    The system uses a collaborative robot (xArm 6) mounted on linear guide
-    rails driven by a NEMA23 stepper and ball screw. An Intel RealSense D435i
-    with AprilTag markers provides vision-based positioning on the worktable,
-    workpiece holders, and vise jaws.
+    The robotic handling strategy uses a UFACTORY xArm 6 collaborative manipulator
+    mounted on linear guide rails driven by a NEMA23 stepper motor and ball screw,
+    extending the robot's working envelope to cover the full CNC worktable. Vision-
+    based positioning is provided by an Intel RealSense D435i with AprilTag markers
+    placed on the worktable, workpiece holders, and vise jaws — giving the system
+    a reference frame for accurate part placement without dedicated fixturing.
 
-    Automated clamping uses linear actuators with a stepper-driven tightening
-    mechanism and integrated torque sensor for controlled clamping force.
-    Full feasibility analysis, spatial constraint evaluation, and automation
-    logic were developed for CNC integration.
+    Automated clamping uses a stepper-driven tightening mechanism with an integrated
+    torque sensor mounted on the motor shaft, enabling controlled and repeatable
+    clamping force. Full feasibility analysis was performed covering spatial
+    constraints, tolerance stack-up, and automation logic for CNC integration.
   images:
     - "images/projects/apsara/cnc_vise_thumb.png"
     - "images/projects/apsara/cnc_vise_thumb_v2.png"
   specs:
-    - { key: "Robot", value: "xArm 6 (collaborative)" }
-    - { key: "Vision", value: "RealSense D435i + AprilTags" }
-    - { key: "Motion", value: "Ball screw + linear rails" }
-    - { key: "CAD", value: "Fusion 360" }
-    - { key: "Status", value: "Concept / R&D" }
-  highlights:
-    - { icon: "ti-robot", title: "Collaborative robot", desc: "xArm 6 on linear rails for flexible CNC vise loading and part handling" }
-    - { icon: "ti-eye", title: "Vision positioning", desc: "RealSense D435i with AprilTags for sub-millimetre workpiece alignment" }
-    - { icon: "ti-adjustments-horizontal", title: "Torque clamping", desc: "Stepper-driven tightening with integrated torque sensor for controlled force" }
+    - { key: "Robot",          value: "UFACTORY xArm 6 (collaborative)" }
+    - { key: "Linear motion",  value: "NEMA23 stepper + ball screw + linear rails" }
+    - { key: "Vision",         value: "Intel RealSense D435i + AprilTag markers" }
+    - { key: "Clamping",       value: "Stepper-driven, torque sensor feedback" }
+    - { key: "AprilTag ref.",  value: "Worktable, workpiece holders, vise jaws" }
+    - { key: "CAD",            value: "Fusion 360" }
+    - { key: "Analysis",       value: "Feasibility, spatial constraints, tolerances" }
+    - { key: "Status",         value: "Concept / R&D" }
   tags:
     - Mechanical Design
     - CNC Automation
     - Robotics Integration
+    - AprilTag Vision
     - Fusion 360
-    - Machine Vision
+    - Collaborative Robot

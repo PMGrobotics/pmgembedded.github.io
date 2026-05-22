@@ -581,18 +581,6 @@ function renderProject(p) {
       ${p.specs.map(s => `<div class="spec-pill"><span class="k">${s.key}</span><span class="v">${s.value}</span></div>`).join('')}
     </div>` : '';
 
-  const highlights = p.highlights || [];
-  const hCols = highlights.length >= 3 ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)';
-  const highlightsHTML = highlights.length ? `
-    <p class="specs-section-label">Engineering highlights</p>
-    <div class="highlights-grid" style="grid-template-columns: ${hCols}">
-      ${highlights.map(h => `
-        <div class="highlight-card">
-          <div class="h-icon"><i class="ti ${h.icon}"></i></div>
-          <div class="h-title">${h.title}</div>
-          <div class="h-desc">${h.desc}</div>
-        </div>`).join('')}
-    </div>` : '';
 
   const others = state.projects.filter(op => !op.hidden && op.id !== p.id);
   const moreTotalPages = Math.ceil(others.length / 3);
@@ -645,18 +633,14 @@ function renderProject(p) {
       <div class="project-detail-header">
         <span class="project-client-tag">${p.client || ''}</span>
         <h1 class="project-detail-title">${p.title || ''}</h1>
-        <div class="project-tags">
-          ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
-        </div>
       </div>
       <div class="project-detail-body">
         <div class="project-detail-image">${galleryHTML}</div>
         <div class="project-detail-text">
           <div class="project-description">${descHTML}</div>
-          ${specsHTML}
         </div>
       </div>
-      ${highlightsHTML ? `<hr>${highlightsHTML}` : ''}
+      ${specsHTML}
     </div>
   </div>
   ${othersHTML}
