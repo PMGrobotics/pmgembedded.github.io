@@ -459,7 +459,7 @@ function projectCardHTML(p, i) {
       <h3 class="project-title">${p.title || ''}</h3>
       <p class="project-summary">${p.summary || ''}</p>
       <div class="project-tags">
-        ${(p.tags || []).slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('')}
+        ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
       </div>
       <span class="project-card-cta">View project ${svgArrowRight(12)}</span>
     </div>
