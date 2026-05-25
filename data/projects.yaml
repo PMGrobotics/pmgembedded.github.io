@@ -32,7 +32,7 @@
   client: Rabbit Hole Computing
   category: PCB Design
   thumbnail: "images/projects/alex-peres/thumbs/am1808_trans.png"
-  summary: "Custom SoM based on the Texas Instruments AM1808 processor for industrial applications."
+  summary: "High-density SoM built around the TI AM1808 ARM9, integrating DDR2 memory, sequenced power rails, and industrial interfaces for embedded Linux applications."
   description: |
     A custom System-on-Module built around the Texas Instruments AM1808 Sitara
     ARM9 processor, designed for scalable embedded Linux applications including
@@ -74,7 +74,8 @@
   client: Rabbit Hole Computing
   category: PCB Design
   thumbnail: "images/projects/alex-peres/thumbs/main_image_v2.png"
-  summary: "Custom embedded computing board based on the NXP MPC8313E PowerQUIC II processor."
+  summary: "8-layer SoM based on the NXP MPC8313E PowerQUICC II Pro, with dual Gigabit Ethernet, PCIe, USB 2.0, and impedance-controlled DDR2 routing."
+
   description: |
     A custom System-on-Module built around the NXP MPC8313E PowerQUICC II Pro
     processor, designed for demanding embedded Linux applications including
@@ -179,7 +180,8 @@
   client: Alterra
   category: PCB Design
   thumbnail: "images/projects/liam-burns/thumbs/tst_500.png"
-  summary: "Four-port USB 3.0 hub with industrial power input and per-port power management."
+  summary: "4-port USB 3.1 Gen1 hub with per-port overcurrent protection and 5 Gbps signal-integrity-optimized layout for industrial integration."
+
   description: |
     A custom 4-port USB hub built around the Microchip USB5744 controller,
     supporting simultaneous USB 2.0 and USB 3.1 Gen1 (5 Gbps) operation.
@@ -483,7 +485,7 @@
   title: LoRaWAN Energy Meter
   client: Jan Kerkel
   category: PCB Design & Embedded Programming
-  thumbnail: "images/projects/jan-kerkel/thumbs/lorawan_top.JPG"
+  thumbnail: "images/projects/jan-kerkel/thumbs/lorawan_top-rmbg.png"
   summary: "Low-power energy meter with LoRaWAN wireless connectivity for remote monitoring."
   description: |
     A LoRaWAN-connected energy meter designed for mass production and
@@ -502,8 +504,9 @@
     cell with a target battery life exceeding 10 years under normal operation.
     The battery is user-replaceable without tools.
   images:
-    - "images/projects/jan-kerkel/lorawan_top.JPG"
-    - "images/projects/jan-kerkel/lorawan_top-removebg-preview.png"
+    - "images/projects/jan-kerkel/lorawan_top-rmbg.png"
+    - "images/projects/jan-kerkel/lorawan_back_1-rmbg.png"
+    - "images/projects/jan-kerkel/lorawan_back_2-rmbg.png"
   tags:
     - PCB Design
     - Embedded Programming
@@ -528,7 +531,8 @@
   client: Apsara
   category: Mechanical Design
   thumbnail: "images/projects/apsara/thumbs/lift_thumb_image.png"
-  summary: "Precision Lifting Table for Warehouse Mobile Robot"
+  summary: "Ball screw lifting table with ±1 mm accuracy, integrated onto an autonomous warehouse robot for vertical material handling."
+
   description: |
     A precision lifting table designed and integrated onto an autonomous warehouse
     robot, enabling accurate vertical positioning for material handling operations
@@ -619,7 +623,7 @@
   title: Mobile Robotics Platform with Dual UR10
   client: Apsara
   category: Mechanical Design
-  thumbnail: "images/projects/apsara/thumbs/dual_arm_stand_thumb_image_v2.png"
+  thumbnail: "images/projects/apsara/thumbs/robotics_platform_1.png"
   summary: "Modular mobile platform integrating two UR10 manipulators on a mecanum-wheel base with deployable stabilizers."
   description: |
     A modular mobile robotic platform integrating two UR10 manipulators on a
@@ -640,8 +644,8 @@
     Manufacturing drawings and documentation were produced for CNC fabrication
     and assembly.
   images:
-    - "images/projects/apsara/dual_arm_stand_thumb_image_v2.png"
-    - "images/projects/apsara/bilateral_tst.png"
+    - "images/projects/apsara/robotics_platform_1.png"
+    - "images/projects/apsara/robotics_platform_2.png"
   specs:
     - { key: "Manipulators",   value: "2× UR10 robotic arms" }
     - { key: "Mobility",       value: "Mecanum-wheel drive module" }
