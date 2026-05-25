@@ -103,7 +103,7 @@
   specs:
     - { key: "Processor",    value: "NXP MPC8313E PowerQUICC II Pro" }
     - { key: "Memory",       value: "DDR2 SDRAM (length-matched, impedance-controlled)" }
-    - { key: "Ethernet",     value: "2× Gigabit RGMII with PHY" }
+    - { key: "Ethernet",     value: "2x Gigabit RGMII with PHY" }
     - { key: "Interfaces",   value: "PCIe, USB 2.0, I²C, GPIO" }
     - { key: "Debug",        value: "JTAG + UART" }
     - { key: "Power rails",  value: "1.0 V / 1.8 V / 2.5 V / 3.3 V sequenced" }
@@ -150,11 +150,10 @@
     and hot-plug detection, and MIPI CSI camera lanes with shielded, noise-isolated
     routing. An M.2 Key-E slot supports Wi-Fi/BT modules via SDIO, PCIe, and UART.
 
-    A multistage power sequencing system manages 1.8 V, 3.3 V, and 5 V rails with
-    synchronized enable signals and reset logic for both the module and all
-    peripherals. eFuse and recovery logic ensure safe OTA updates and power
-    recovery. Expansion headers expose I²C, SPI, UART, CAN, and GPIO for
-    application-specific integration.
+    A multistage power sequencing system (Using TI MCU) manages 
+    1.8 V, 3.3 V, and 5 V rails with synchronized enable signals and reset 
+    logic for both the module and all peripherals. Expansion headers expose 
+    I²C, SPI, UART, CAN, and GPIO for application-specific integration.
   images:
     - "images/projects/lincon-cavalieri/main_image_v2.png"
   tags:
@@ -176,15 +175,15 @@
 
 - id: usb-hub
   hidden: false
-  title: Industrial USB Hub – High-Speed USB 3.1 Gen1 Hub with Power Management
+  title: High-Speed USB 3.1 Gen1 Hub
   client: Alterra
   category: PCB Design
   thumbnail: "images/projects/liam-burns/thumbs/tst_500.png"
-  summary: "4-port USB 3.1 Gen1 hub with per-port overcurrent protection and 5 Gbps signal-integrity-optimized layout for industrial integration."
+  summary: "2-port USB 3.1 Gen1 hub with per-port overcurrent protection and 5 Gbps signal-integrity-optimized layout for industrial integration."
 
   description: |
-    A custom 4-port USB hub built around the Microchip USB5744 controller,
-    supporting simultaneous USB 2.0 and USB 3.1 Gen1 (5 Gbps) operation.
+    A custom 2-port USB hub built around the Microchip USB5744 controller,
+    supporting simultaneous 2 USB 3.1 Gen1 (5 Gbps) operation.
     Designed for integration into industrial and consumer electronics where
     signal integrity, power stability, and compact layout are critical.
 
@@ -225,8 +224,8 @@
   thumbnail: "images/projects/signal-integrity-and-emi-emc/thumbs/eye_1.png"
   summary: "Signal integrity simulation and pre-compliance EMI/EMC analysis for high-speed differential interfaces up to 10+ Gbps."
   description: |
-    We help companies ensure signal reliability and electromagnetic compliance in
-    complex, high-speed designs — whether preparing for certification or
+    We help clients ensure signal reliability and electromagnetic compliance in
+    complex, high-speed designs. Whether preparing for certification or
     troubleshooting critical issues before they reach production.
 
     Our signal integrity work covers TDR analysis for impedance matching and
@@ -236,7 +235,7 @@
     are most affected, with near-end and far-end coupling visualized separately
     to guide layout optimization.
 
-    On the EMC side, we perform near-field E and H-field measurements 2–3 mm above
+    On the EMC side, we perform near-field E and H-field measurements 2-3 mm above
     the PCB surface to identify emission hotspots at fundamental and harmonic
     frequencies, as well as far-field analysis at 1 m distance for pre-compliance
     evaluation against CISPR and FCC standards. We also provide design reviews
@@ -248,15 +247,10 @@
     custom TDR and emissions test setups.
   images:
     - "images/projects/signal-integrity-and-emi-emc/eye_1.png"
-    - "images/projects/signal-integrity-and-emi-emc/eye_2.png"
-    - "images/projects/signal-integrity-and-emi-emc/pcb_1.png"
     - "images/projects/signal-integrity-and-emi-emc/pcb_2.png"
-    - "images/projects/signal-integrity-and-emi-emc/waveform_1.png"
     - "images/projects/signal-integrity-and-emi-emc/waveform_2.png"
     - "images/projects/signal-integrity-and-emi-emc/waveform_3.png"
-    - "images/projects/signal-integrity-and-emi-emc/waveform_4.png"
     - "images/projects/signal-integrity-and-emi-emc/waveform_5.png"
-    - "images/projects/signal-integrity-and-emi-emc/waveform_6.png"
   tags:
     - Signal Integrity
     - EMI/EMC
@@ -276,7 +270,7 @@
 
 - id: qa-maestro-pmu
   hidden: false
-  title: QA Maestro Power Management Unit
+  title: Power Management Unit
   client: Paul Kang
   category: PCB Design & Embedded Programming
   thumbnail: "images/projects/paul-kang/thumbs/tst.png"
@@ -289,15 +283,11 @@
     An STM32 microcontroller acts as the system supervisor: sequencing power
     rails on startup, monitoring supply voltages, and providing a firmware-
     controlled reset and enable interface exposed through a header connector.
-    Two independently regulated 3.3 V outputs — 3.3V_SYS and 3.3V_OUT —
-    allow separation of system and load power domains. A dedicated LED
-    provides real-time power status indication.
+    Two independently regulated 3.3 V outputs allow separation of system and load power domains. 
 
     A USB port enables in-field firmware updates and debug communication
     without disassembling the unit. Boot and reset controls are accessible
-    via onboard switches. PMG Embedded was responsible for schematic capture,
-    PCB layout, and STM32 supervisory firmware, delivering the board ready
-    for integration into the broader QA Maestro system.
+    via onboard switches.
   images:
     - "images/projects/paul-kang/tst.png"
   tags:
@@ -310,15 +300,15 @@
   specs:
     - { key: "MCU",           value: "STM32 (system supervisor)" }
     - { key: "Input",         value: "12 V system power" }
-    - { key: "Output",        value: "3.3V_SYS + 3.3V_OUT (dual regulated rails)" }
+    - { key: "Output",        value: "3.3V_SYS and 3.3V_OUT (dual regulated rails)" }
     - { key: "Supervision",   value: "Rail sequencing, voltage monitoring, reset" }
-    - { key: "Interface",     value: "Pin header — reset & enable control" }
-    - { key: "Firmware",      value: "USB — in-field update + debug" }
+    - { key: "Interface",     value: "Pin header for reset & enable control" }
+    - { key: "Firmware",      value: "USB in-field update + debug" }
     - { key: "Controls",      value: "Onboard boot + reset switches" }
     - { key: "Application",   value: "Test platform power management" }
 - id: smart-lock-keivan
   hidden: false
-  title: Smart Lock – Cellular-Connected Bike Lock System
+  title: Smart Lock - NB-IoT Bike Lock System
   client: Bikely
   category: PCB Design & Embedded Programming
   thumbnail: "images/projects/smart-lock-keivan/thumbs/main_image.png"
@@ -337,9 +327,10 @@
     configurable current limiting for reliable lock/unlock actuation.
 
     Lock position feedback is provided by dual limit switches and a photo sensor
-    with filtered inputs and careful grounding for noise immunity. Dual eSIM and
-    nano SIM interfaces include ESD protection. An RGB status LED and UART debug
-    port are provided for diagnostics and field service.
+    with filtered inputs and careful grounding for noise immunity. 
+    
+    NB-IoT connectivity is achieved using eSIM as primary and nano SIM as secondary SIM.
+    An RGB status LED and UART debug port are provided for diagnostics and field service.
   images:
     - "images/projects/smart-lock-keivan/main_image.png"
     - "images/projects/smart-lock-keivan/image_final_box.png"
@@ -353,7 +344,7 @@
     - IoT
   specs:
     - { key: "MCU",          value: "STM32L071 (Cortex-M0+, ultra-low-power)" }
-    - { key: "Connectivity", value: "NB-IoT — Quectel BG95-M2 + OTA support" }
+    - { key: "Connectivity", value: "NB-IoT using Quectel BG95-M2 + OTA support" }
     - { key: "Antenna",      value: "Ceramic, RF lab-tuned matching network" }
     - { key: "Motor driver", value: "DRV8210, 6 V rail, configurable current limit" }
     - { key: "Power",        value: "TPS63070 buck-boost, 3.5 V + 6 V rails" }
@@ -416,7 +407,7 @@
     The firmware delivers the same arc-second range pointing accuracy as larger
     systems, running custom star-pattern matching algorithms optimized for
     accuracy, robustness, and low computational cost — all within the strict
-    size, weight, and power (SWaP) constraints of a 20 × 20 × 40 mm, 35 g
+    size, weight, and power (SWaP) constraints of a 20 x 20 x 40 mm, 35 g
     package. Attitude data is output to the satellite's on-board computer via
     RS485.
   images:
@@ -444,38 +435,41 @@
   client: Carl Wilhite
   category: PCB Design & Embedded Programming
   thumbnail: "images/projects/carl-wilhite/thumbs/top.png"
-  summary: "Coin-cell powered wireless sensor node integrating gyroscope, pressure, and temperature sensing."
+  summary: "Coin-cell powered BLE sensor node built on STM32WB, integrating gyroscope, pressure, and temperature sensing for ultra-low-power remote monitoring."
   description: |
-    A miniaturized wireless sensor node designed for extended battery life on a
-    single CR3032 coin cell. The board integrates three sensors — a MEMS
-    gyroscope, a barometric pressure sensor, and a temperature sensor — onto a
-    compact, low-profile PCB optimized for minimum current draw.
+    A miniaturized BLE sensor node designed for extended battery life on a
+    single CR3032 coin cell. The board integrates three sensors. A MEMS
+    gyroscope, a barometric pressure sensor, and a temperature sensor. They are all
+    fitted onto a compact, low-profile PCB optimized for minimum current draw
+    across the full sensor and radio chain.
 
-    An STM32 microcontroller (Arm Cortex-M) manages sensor polling, data
-    aggregation, and wireless transmission, spending the majority of its time
-    in deep sleep to preserve the coin-cell budget. Component selection was
-    performed specifically for lowest possible active and standby current across
-    the full sensor and radio chain.
+    At the heart of the design is an STM32WB microcontroller, a dual-core
+    Arm Cortex-M4/M0+ SoC from ST's Wireless family with an integrated BLE
+    radio. This eliminates the need for an external radio module, reducing
+    both board area and power consumption. The MCU manages sensor polling,
+    data aggregation, and BLE transmission while spending the vast majority
+    of its time in deep sleep, preserving the coin-cell budget over extended
+    deployments.
 
     PMG Embedded handled schematic capture, component selection, PCB layout,
-    and firmware — delivering a validated, ready-to-deploy sensor node with
-    SWD and UART headers for development and production testing.
+    and firmware.
   images:
     - "images/projects/carl-wilhite/top.png"
     - "images/projects/carl-wilhite/bottom.png"
   tags:
     - PCB Design
     - Embedded Programming
-    - STM32
+    - STM32WB
+    - BLE
     - Ultra-Low-Power
     - IoT
     - Wireless
   specs:
-    - { key: "MCU",          value: "STM32 Cortex-M (ultra-low-power)" }
+    - { key: "MCU",          value: "STM32WB (Cortex-M4/M0+, integrated BLE radio)" }
+    - { key: "Wireless",     value: "Bluetooth Low Energy (BLE), on-chip" }
     - { key: "Power",        value: "CR3032 coin cell" }
     - { key: "Sensors",      value: "MEMS gyroscope, barometric pressure, temperature" }
     - { key: "Sleep modes",  value: "Deep sleep between transmissions" }
-    - { key: "Wireless",     value: "On-board radio (protocol TBD)" }
     - { key: "Debug",        value: "SWD + UART headers" }
     - { key: "Design focus", value: "Minimum current draw, full chain optimized" }
     - { key: "Application",  value: "IoT / Remote Sensing / Wireless Monitoring" }
@@ -492,7 +486,7 @@
     residential deployment, enabling real-time remote monitoring of household
     electricity consumption without any local network infrastructure.
 
-    The device attaches directly to an existing utility meter via magnets —
+    The device attaches directly to an existing utility meter via magnets, with
     no tools, no wiring. It reads meter data through a galvanically isolated
     interface and transmits readings to a cloud server over the LoRaWAN network,
     where end users access live consumption data and usage history through a
@@ -540,8 +534,8 @@
 
     The mechanical system is built around a ball screw drive with linear guide
     rails, delivering reliable ±1 mm positioning accuracy under load. Full
-    drivetrain component selection was performed in-house — stepper motor with
-    brake, ball screw, linear blocks, and couplings — with all sizing calculations
+    drivetrain component selection was performed in-house, stepper motor with
+    brake, ball screw, linear blocks, and couplings, with all sizing calculations
     validated before procurement.
 
     Complete 3D CAD models, assemblies, and manufacturing drawings were created in
@@ -565,10 +559,10 @@
     - { key: "Drive",          value: "Ball screw + stepper motor with brake" }
     - { key: "Guiding",        value: "Linear guide rails + linear blocks" }
     - { key: "CAD",            value: "Autodesk Inventor" }
-    - { key: "Firmware",       value: "Embedded C — stepper control & motion verify" }
+    - { key: "Firmware",       value: "Embedded C for stepper control & motion verify" }
     - { key: "Manufacturing",  value: "Custom-machined parts, external sourcing" }
     - { key: "Integration",    value: "Full mechanical assembly + wiring" }
-    - { key: "Application",    value: "Warehouse AMR — vertical positioning" }
+    - { key: "Application",    value: "Warehouse AMR for vertical positioning" }
     
 
 - id: mini-asrs
