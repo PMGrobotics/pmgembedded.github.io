@@ -14,20 +14,41 @@
 #    email    — Company email address (leave empty "" to hide)
 # ─────────────────────────────────────────────────────────────────────────────
 
-- name: Danilo Lazic
-  role: Firmware Developer
-  photo: "images/team/thumbs/danilo.JPG"
-  linkedin: "https://www.linkedin.com/in/danilo-lazic-73455418a/"
-  email: "danilo@pmgembedded.com"
+about:
+  intro: "A small engineering team based in Novi Sad, Serbia. PCB design,
+    embedded firmware, and mechanical engineering under one roof. We have
+    worked with clients across 15+ countries, from early-stage startups
+    to established industrial companies."
 
-- name: Sladjan Plavsic
-  role: Mechanical Designer
-  photo: "images/team/thumbs/sladjan.png"
-  linkedin: "https://www.linkedin.com/in/sladjanplavsic/"
-  email: "sladjan@pmgembedded.com"
+clients:
+  - title: "Startups & Product Teams"
+    desc: "You have an idea and need someone to build the hardware. We cover
+      PCB design, firmware, and mechanics, so you don't need to hire three
+      separate specialists for one product."
+  - title: "Engineering Teams"
+    desc: "Your team has the product defined but needs specific engineering
+      work done. PCB layout, firmware for a particular subsystem, bring-up
+      support, or a complete module handed off."
+  - title: "Companies & Partners"
+    desc: "Established companies that need a technical partner for a specific
+      project or ongoing work. We take ownership of the hardware scope so
+      your team stays focused on the rest."
 
-- name: Zelimir Trisic
-  role: Hardware Engineer
-  photo: "images/team/thumbs/zelimir.jpeg"
-  linkedin: "https://www.linkedin.com/in/zelimir-trisic-292148175/"
-  email: "zelimir@pmgembedded.com"
+members:
+  - name: Danilo Lazic
+    role: Firmware Developer
+    photo: "images/team/thumbs/danilo.JPG"
+    linkedin: "https://www.linkedin.com/in/danilo-lazic-73455418a/"
+    email: "danilo@pmgembedded.com"
+
+  - name: Sladjan Plavsic
+    role: Mechanical Designer
+    photo: "images/team/thumbs/sladjan.png"
+    linkedin: "https://www.linkedin.com/in/sladjanplavsic/"
+    email: "sladjan@pmgembedded.com"
+
+  - name: Zelimir Trisic
+    role: Hardware Engineer
+    photo: "images/team/thumbs/zelimir.jpeg"
+    linkedin: "https://www.linkedin.com/in/zelimir-trisic-292148175/"
+    email: "zelimir@pmgembedded.com"

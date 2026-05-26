@@ -21,10 +21,13 @@ async function loadData() {
       loadYaml('data/config.yaml'),
       loadYaml('data/services.yaml'),
     ]);
-    state.projects = projects || [];
-    state.team     = team     || [];
-    state.config   = config   || {};
-    state.services = services || [];
+    state.projects     = projects || [];
+    state.config       = config   || {};
+    state.services     = services || [];
+    state.about        = (team && team.about)   || {};
+    state.clients      = (team && team.clients) || [];
+    state.teamMembers  = (team && team.members) || [];
+    state.team         = state.teamMembers;
   } catch (err) {
     console.error('Failed to load site data:', err);
     state.loadError = err.message;
@@ -106,7 +109,7 @@ function router() {
 
 function renderHome() {
   document.getElementById('app').innerHTML =
-    heroHTML() + statsHTML() + clientsHTML() + servicesHTML() + projectsHTML() + partnersHTML() + teamHTML() + contactHTML();
+    heroHTML() + statsHTML() + servicesHTML() + projectsHTML() + aboutHTML() + partnersHTML() + contactHTML();
 
   initProjectCards();
   initSlideshow();
@@ -338,28 +341,40 @@ function statsHTML() {
   </div>`;
 }
 
-function clientsHTML() {
-  const clients = [
-    {
-      title: 'Startups & Product Teams',
-      desc: 'You have an idea and need someone to build the hardware. We cover PCB design, firmware, and mechanics, so you don\'t need to hire three separate specialists for one product.',
-    },
-    {
-      title: 'Engineering Teams',
-      desc: 'Your team has the product defined but needs specific engineering work done. PCB layout, firmware for a particular subsystem, bring-up support, or a complete module handed off.',
-    },
-    {
-      title: 'Companies & Partners',
-      desc: 'Established companies that need a technical partner for a specific project or ongoing work. We take ownership of the hardware scope so your team stays focused on the rest.',
-    },
-  ];
+function aboutHTML() {
+  const intro   = (state.about && state.about.intro) || '';
+  const clients = state.clients || [];
+  const members = state.teamMembers || [];
+
+  const teamGrid = members.length ? `
+    <div class="team-grid">
+      ${members.map((m, i) => `
+        <div class="team-member reveal reveal-d${(i % 4) + 1}">
+          <div class="member-photo">
+            ${m.linkedin
+              ? `<a href="${m.linkedin}" class="member-photo-link" target="_blank" rel="noopener noreferrer" aria-label="${m.name} on LinkedIn">
+                   ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy">` : `<div class="photo-placeholder">${(m.name || '?')[0]}</div>`}
+                   <div class="member-photo-overlay">${svgLinkedIn()}</div>
+                 </a>`
+              : m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy">` : `<div class="photo-placeholder">${(m.name || '?')[0]}</div>`}
+          </div>
+          <div class="member-info">
+            <h4>${m.name || ''}</h4>
+            <p class="member-role">${m.role || ''}</p>
+            ${m.email ? `<a href="mailto:${m.email}" class="member-link">${m.email}</a>` : ''}
+          </div>
+        </div>`).join('')}
+    </div>` : '';
+
   return `
-  <section class="clients-section">
+  <section class="about-section" id="about">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Who we work with</h2>
-        <p class="section-sub">Startups, product companies, and engineering teams looking for a reliable technical partner.</p>
+      <div class="section-header reveal">
+        <h2>About</h2>
       </div>
+      ${intro ? `<p class="about-intro">${intro}</p>` : ''}
+      <div class="about-divider"></div>
+      <h3 class="about-sub-heading">Who we work with</h3>
       <div class="clients-grid">
         ${clients.map(c => `
           <div class="client-card">
@@ -367,6 +382,9 @@ function clientsHTML() {
             <p class="client-card-desc">${c.desc}</p>
           </div>`).join('')}
       </div>
+      <div class="about-divider"></div>
+      <h3 class="about-sub-heading">Team</h3>
+      ${teamGrid}
     </div>
   </section>`;
 }
@@ -519,36 +537,6 @@ function partnersHTML() {
   </section>`;
 }
 
-function teamHTML() {
-  if (!state.team.length) return '';
-
-  return `
-  <section class="team-section" id="team">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Team</h2>
-      </div>
-      <div class="team-grid">
-        ${state.team.map((m, i) => `
-          <div class="team-member reveal reveal-d${(i % 4) + 1}">
-            <div class="member-photo">
-              ${m.linkedin
-                ? `<a href="${m.linkedin}" class="member-photo-link" target="_blank" rel="noopener noreferrer" aria-label="${m.name} on LinkedIn">
-                     ${m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy">` : `<div class="photo-placeholder">${(m.name || '?')[0]}</div>`}
-                     <div class="member-photo-overlay">${svgLinkedIn()}</div>
-                   </a>`
-                : m.photo ? `<img src="${m.photo}" alt="${m.name}" loading="lazy">` : `<div class="photo-placeholder">${(m.name || '?')[0]}</div>`}
-            </div>
-            <div class="member-info">
-              <h4>${m.name || ''}</h4>
-              <p class="member-role">${m.role || ''}</p>
-              ${m.email ? `<a href="mailto:${m.email}" class="member-link">${m.email}</a>` : ''}
-            </div>
-          </div>`).join('')}
-      </div>
-    </div>
-  </section>`;
-}
 
 function contactHTML() {
   const c     = state.config;
@@ -1052,7 +1040,7 @@ function initScrollReveal() {}
 
 function initActiveNav() {
   if (!window.IntersectionObserver) return;
-  const sections = ['services', 'partners', 'team', 'contact'];
+  const sections = ['services', 'partners', 'about', 'contact'];
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);

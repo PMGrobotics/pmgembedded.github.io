@@ -709,6 +709,43 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .partner-card:hover .partner-name-text { color: var(--text); }
 
 /* ─────────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────────── */
+.about-section {
+  padding: 96px 0;
+  border-top: 1px solid var(--border);
+}
+.about-intro {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 0 48px 0;
+}
+.about-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 56px 0 40px;
+}
+.about-sub-heading {
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  position: relative;
+  padding-bottom: 16px;
+  margin: 0 0 40px 0;
+}
+.about-sub-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 36px; height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────
    TEAM
 ───────────────────────────────────────────── */
 .team-section {
