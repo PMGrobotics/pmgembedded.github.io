@@ -962,6 +962,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin: 0 0 12px 0;
   padding: 0;
   overflow-wrap: break-word;
+  text-align: justify;
+  hyphens: auto;
 }
 .project-description h2 {
   font-size: 22px;
