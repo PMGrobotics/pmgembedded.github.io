@@ -28,6 +28,7 @@
 
 - id: am1808-som
   hidden: false
+  featured: true
   title: AM1808 SoM – High-Performance System-on-Module Design
   client: Rabbit Hole Computing
   category: PCB Design
@@ -134,6 +135,7 @@
 
 - id: jetson-carrier-board
   hidden: false
+  featured: true
   title: Jetson Xavier NX Carrier Board – High-Density Embedded AI Platform
   client: Lincon Cavalieri
   category: PCB Design
@@ -308,6 +310,7 @@
     - { key: "Application",   value: "Test platform power management" }
 - id: smart-lock-keivan
   hidden: false
+  featured: true
   title: Smart Lock - NB-IoT Bike Lock System
   client: Bikely
   category: PCB Design & Embedded Programming
@@ -354,6 +357,7 @@
 
 - id: sagitta
   hidden: false
+  featured: true
   title: Sagitta
   client: Arcsec
   category: Firmware Development
@@ -521,6 +525,7 @@
 
 - id: Lift
   hidden: false
+  featured: true
   title: Precision Lifting Table
   client: Apsara
   category: Mechanical Design
@@ -614,6 +619,7 @@
 
 - id: mobile-robotics-platform
   hidden: false
+  featured: true
   title: Mobile Robotics Platform with Dual UR10
   client: Apsara
   category: Mechanical Design

@@ -278,7 +278,7 @@ function heroHTML() {
   const tagline = c.tagline || 'From concept to<br><em>production-ready</em><br>hardware.';
   const desc    = c.description || 'PCB design, embedded firmware, and mechanical engineering &mdash; full product bringup from prototype to production.';
 
-  const slides = (state.projects || []).filter(p => !p.hidden && p.thumbnail && p.thumbnail.trim());
+  const slides = (state.projects || []).filter(p => !p.hidden && p.thumbnail && p.thumbnail.trim() && p.featured);
 
   const visual = slides.length
     ? `<div class="hero-slideshow" id="hero-slideshow">
@@ -287,7 +287,6 @@ function heroHTML() {
             <img src="${p.thumbnail}" alt="${p.title}" class="slideshow-img" loading="lazy">
             <div class="slideshow-caption">
               <div class="slideshow-caption-text">
-                <span class="slideshow-client">${p.client}</span>
                 <span class="slideshow-title">${p.title}</span>
               </div>
             </div>
@@ -321,8 +320,8 @@ function heroHTML() {
 function statsHTML() {
   const stats = [
     { number: '30+',  label: 'Projects delivered' },
-    { number: '3',    label: 'Engineering disciplines' },
-    { number: '15+',   label: 'Countries served' },
+    { number: '3+',   label: 'Engineering disciplines' },
+    { number: '15+',  label: 'Countries served' },
     { number: '2020', label: 'Year founded' },
   ];
   return `
@@ -455,7 +454,6 @@ function projectCardHTML(p, i) {
       <div class="project-thumb-overlay"></div>
     </div>
     <div class="project-card-body">
-      <div class="project-client">${p.client || ''}</div>
       <h3 class="project-title">${p.title || ''}</h3>
       <p class="project-summary">${p.summary || ''}</p>
       <div class="project-tags">
@@ -658,7 +656,6 @@ function renderProject(p) {
         All projects
       </a>
       <div class="project-detail-header">
-        <span class="project-client-tag">${p.client || ''}</span>
         <h1 class="project-detail-title">${p.title || ''}</h1>
       </div>
       <div class="project-detail-body">
