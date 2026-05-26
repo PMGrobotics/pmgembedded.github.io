@@ -106,7 +106,7 @@ function router() {
 
 function renderHome() {
   document.getElementById('app').innerHTML =
-    heroHTML() + statsHTML() + servicesHTML() + projectsHTML() + partnersHTML() + teamHTML() + contactHTML();
+    heroHTML() + statsHTML() + clientsHTML() + servicesHTML() + projectsHTML() + partnersHTML() + teamHTML() + contactHTML();
 
   initProjectCards();
   initSlideshow();
@@ -336,6 +336,39 @@ function statsHTML() {
       </div>
     </div>
   </div>`;
+}
+
+function clientsHTML() {
+  const clients = [
+    {
+      title: 'Startups & Product Teams',
+      desc: 'You have an idea and need someone to build the hardware. We cover PCB design, firmware, and mechanics, so you don\'t need to hire three separate specialists for one product.',
+    },
+    {
+      title: 'Engineering Teams',
+      desc: 'Your team has the product defined but needs specific engineering work done. PCB layout, firmware for a particular subsystem, bring-up support, or a complete module handed off.',
+    },
+    {
+      title: 'Companies & Partners',
+      desc: 'Established companies that need a technical partner for a specific project or ongoing work. We take ownership of the hardware scope so your team stays focused on the rest.',
+    },
+  ];
+  return `
+  <section class="clients-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Who we work with</h2>
+        <p class="section-sub">Startups, product companies, and engineering teams looking for a reliable technical partner.</p>
+      </div>
+      <div class="clients-grid">
+        ${clients.map(c => `
+          <div class="client-card">
+            <h3 class="client-card-title">${c.title}</h3>
+            <p class="client-card-desc">${c.desc}</p>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
 }
 
 function servicesHTML() {

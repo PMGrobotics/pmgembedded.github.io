@@ -496,6 +496,61 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .service-card:hover .service-card-cta svg { transform: translateX(2px); }
 
 /* ─────────────────────────────────────────────
+   CLIENTS
+───────────────────────────────────────────── */
+.clients-section {
+  padding: 96px 0;
+  border-top: 1px solid var(--border);
+}
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.client-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.client-card:hover {
+  background: color-mix(in srgb, var(--surface) 85%, var(--accent) 15%);
+  border-top-color: var(--accent);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+.client-card-icon {
+  font-size: 32px;
+  color: var(--accent);
+  line-height: 1;
+}
+.client-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.client-card-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+  flex: 1;
+  text-align: justify;
+  hyphens: auto;
+}
+.client-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────────
    PROJECTS
 ───────────────────────────────────────────── */
 .projects-section {
@@ -1059,6 +1114,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .hero .container { gap: 40px; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .clients-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ─────────────────────────────────────────────
@@ -1099,6 +1155,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
   /* Projects */
   .projects-grid { grid-template-columns: 1fr; }
+  .clients-grid { grid-template-columns: 1fr; }
 
   /* Stats */
   .stat-item {
