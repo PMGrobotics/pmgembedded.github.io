@@ -480,7 +480,7 @@
   title: LoRaWAN Energy Meter
   client: Jan Kerkel
   category: PCB Design & Embedded Programming
-  thumbnail: "images/projects/jan-kerkel/thumbs/lorawan_top-rmbg.png"
+  thumbnail: "images/projects/jan-kerkel/thumbs/LoRa_WAN_thumb.png"
   summary: "Low-power energy meter with LoRaWAN wireless connectivity for remote monitoring."
   description: |
     A LoRaWAN-connected energy meter designed for mass production and
@@ -499,9 +499,9 @@
     cell with a target battery life exceeding 10 years under normal operation.
     The battery is user-replaceable without tools.
   images:
-    - "images/projects/jan-kerkel/lorawan_top-rmbg.png"
-    - "images/projects/jan-kerkel/lorawan_back_1-rmbg.png"
-    - "images/projects/jan-kerkel/lorawan_back_2-rmbg.png"
+    - "images/projects/jan-kerkel/LoRa_WAN_thumb.png"
+    - "images/projects/jan-kerkel/LoRa_WAN_bottom_1.png"
+    - "images/projects/jan-kerkel/LoRa_WAN_bottom_2.png"
   tags:
     - PCB Design
     - Embedded Programming
