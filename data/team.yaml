@@ -15,10 +15,16 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 about:
-  intro: "A small engineering team based in Novi Sad, Serbia. PCB design,
-    embedded firmware, and mechanical engineering under one roof. We have
-    worked with clients across 15+ countries, from early-stage startups
-    to established industrial companies."
+  intro: "PCB design, embedded firmware, and mechanical engineering under one roof. Based in Novi Sad, Serbia, working with hardware startups, tech companies, and industrial clients across 15+ countries."
+  stats:
+    - number: "30+"
+      label: "Projects delivered"
+    - number: "3+"
+      label: "Engineering disciplines"
+    - number: "15+"
+      label: "Countries served"
+    - number: "2020"
+      label: "Year founded"
 
 clients:
   - title: "Startups & Product Teams"

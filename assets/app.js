@@ -109,7 +109,7 @@ function router() {
 
 function renderHome() {
   document.getElementById('app').innerHTML =
-    heroHTML() + statsHTML() + servicesHTML() + projectsHTML() + aboutHTML() + partnersHTML() + contactHTML();
+    heroHTML() + servicesHTML() + projectsHTML() + aboutHTML() + partnersHTML() + contactHTML();
 
   initProjectCards();
   initSlideshow();
@@ -373,6 +373,14 @@ function aboutHTML() {
         <h2>About</h2>
       </div>
       ${intro ? `<p class="about-intro">${intro}</p>` : ''}
+      ${(state.about && state.about.stats && state.about.stats.length) ? `
+      <div class="stats-row about-stats">
+        ${state.about.stats.map(s => `
+          <div class="stat-item">
+            <div class="stat-number">${s.number}</div>
+            <div class="stat-label">${s.label}</div>
+          </div>`).join('')}
+      </div>` : ''}
       <div class="about-divider"></div>
       <h3 class="about-sub-heading">Who we work with</h3>
       <div class="clients-grid">
