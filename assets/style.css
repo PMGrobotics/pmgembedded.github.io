@@ -722,8 +722,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 16px;
   line-height: 1.75;
   color: var(--text-muted);
-  max-width: 720px;
+  max-width: 100%;
   margin: 0 0 48px 0;
+  text-align: justify;
+  hyphens: auto;
 }
 .about-divider {
   border: none;
