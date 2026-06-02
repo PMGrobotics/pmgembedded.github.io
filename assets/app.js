@@ -886,7 +886,6 @@ function initProjectsCarousel() {
     const container = document.getElementById('projects-cards');
     if (!container) return;
     currentPage = Math.max(0, Math.min(page, totalPages - 1));
-    document.getElementById('projects-home')?.scrollIntoView({ behavior: 'instant' });
 
     container.classList.add('fading');
     setTimeout(() => {
@@ -896,6 +895,11 @@ function initProjectsCarousel() {
       container.classList.remove('fading');
       initProjectCards();
       updateUI();
+      const section = document.getElementById('projects-home');
+      if (section) {
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+      }
     }, 220);
   }
 
@@ -975,7 +979,6 @@ function initMoreProjectsCarousel(projects) {
     const container = document.getElementById('more-projects-cards');
     if (!container) return;
     currentPage = Math.max(0, Math.min(page, totalPages - 1));
-    container.closest('section')?.scrollIntoView({ behavior: 'instant' });
     container.classList.add('fading');
     setTimeout(() => {
       const slice = projects.slice(currentPage * 3, currentPage * 3 + 3);
@@ -984,6 +987,11 @@ function initMoreProjectsCarousel(projects) {
       container.classList.remove('fading');
       initProjectCards();
       updateUI();
+      const section = container.closest('section');
+      if (section) {
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+      }
     }, 220);
   }
 
