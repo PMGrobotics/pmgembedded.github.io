@@ -284,20 +284,25 @@ function heroHTML() {
   const slides = (state.projects || []).filter(p => !p.hidden && p.thumbnail && p.thumbnail.trim() && p.featured);
 
   const visual = slides.length
-    ? `<div class="hero-slideshow" id="hero-slideshow">
-        ${slides.map((p, i) => `
-          <div class="slideshow-slide${i === 0 ? ' active' : ''}" data-id="${p.id}" role="button" tabindex="0" aria-label="View ${p.title}">
-            <img src="${p.thumbnail}" alt="${p.title}" class="slideshow-img" loading="lazy">
-            <div class="slideshow-caption">
-              <div class="slideshow-caption-text">
-                <span class="slideshow-title">${p.title}</span>
+    ? `<div class="hero-visual-inner">
+        <div class="hero-slideshow" id="hero-slideshow">
+          <div class="hero-slideshow-badge">Featured Projects</div>
+          ${slides.map((p, i) => `
+            <div class="slideshow-slide${i === 0 ? ' active' : ''}" data-id="${p.id}" role="button" tabindex="0" aria-label="View ${p.title}">
+              <img src="${p.thumbnail}" alt="${p.title}" class="slideshow-img" loading="lazy">
+              <div class="slideshow-caption">
+                <div class="slideshow-caption-text">
+                  <span class="slideshow-title">${p.title}</span>
+                </div>
               </div>
-            </div>
-          </div>`).join('')}
-        ${slides.length > 1 ? `
-          <div class="slideshow-dots">
-            ${slides.map((_, i) => `<button class="slideshow-dot${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="Go to slide ${i + 1}"></button>`).join('')}
-          </div>` : ''}
+            </div>`).join('')}
+          ${slides.length > 1 ? `
+            <button class="hero-slide-btn hero-slide-prev" aria-label="Previous project">&#8249;</button>
+            <button class="hero-slide-btn hero-slide-next" aria-label="Next project">&#8250;</button>
+            <div class="slideshow-dots">
+              ${slides.map((_, i) => `<button class="slideshow-dot${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="Go to slide ${i + 1}"></button>`).join('')}
+            </div>` : ''}
+        </div>
       </div>`
     : `<div class="pcb-grid"></div>`;
 
@@ -305,7 +310,6 @@ function heroHTML() {
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">Based in Novi Sad, Serbia</div>
         <h1 class="hero-title">${tagline}</h1>
         <p class="hero-desc">${desc}</p>
         <div class="hero-actions">
@@ -1009,6 +1013,9 @@ function initSlideshow() {
   dots.forEach(dot => {
     dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.idx)); startTimer(); });
   });
+
+  container.querySelector('.hero-slide-prev')?.addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); startTimer(); });
+  container.querySelector('.hero-slide-next')?.addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); startTimer(); });
 
   container.querySelectorAll('.slideshow-slide').forEach(slide => {
     slide.addEventListener('click', e => {
