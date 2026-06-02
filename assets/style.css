@@ -894,18 +894,59 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
 }
-.footer-logo { margin-bottom: 4px; height: 52px; width: auto; max-width: 220px; object-fit: contain; }
+.contact-left h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  position: relative;
+  padding-bottom: 16px;
+  margin: 0;
+}
+.contact-left h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 36px; height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+}
 .contact-tagline {
   font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
-  max-width: 340px;
+  margin: 0;
 }
-.contact-location {
-  font-size: 13px;
-  color: var(--text-dim);
+.contact-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.contact-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.contact-meta-item i {
+  font-size: 18px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+a.contact-meta-item:hover { color: var(--text); }
+.contact-right {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
 }
 .contact-right h3 {
   font-size: 26px;
@@ -968,7 +1009,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   box-shadow: 0 0 0 3px var(--accent-dim);
 }
 .form-input::placeholder { color: var(--text-dim); }
-.form-textarea { resize: vertical; min-height: 110px; }
+.form-textarea { resize: vertical; min-height: 160px; }
+.form-field { display: flex; flex-direction: column; gap: 4px; }
+.form-field-error {
+  font-size: 12px;
+  color: #ef4444;
+  min-height: 16px;
+}
+.form-input.input-error { border-color: #ef4444; }
+.form-input.input-error:focus { box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
 
 /* ─────────────────────────────────────────────
    PROJECT DETAIL PAGE

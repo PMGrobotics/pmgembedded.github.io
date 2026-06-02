@@ -563,13 +563,23 @@ function contactHTML() {
          <strong>Message sent!</strong> We'll get back to you shortly.
        </div>
        <p id="form-error" class="form-error-global"></p>
-       <form id="contact-form" class="contact-form">
+       <form id="contact-form" class="contact-form" novalidate>
+         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
          <div class="form-row">
-           <input type="text" name="name" placeholder="Your name" required class="form-input">
-           <input type="email" name="email" placeholder="Your email" required class="form-input">
+           <div class="form-field">
+             <input type="text" name="name" id="field-name" placeholder="Your name" required class="form-input">
+             <span class="form-field-error" id="err-name"></span>
+           </div>
+           <div class="form-field">
+             <input type="email" name="email" id="field-email" placeholder="Your email" required class="form-input">
+             <span class="form-field-error" id="err-email"></span>
+           </div>
          </div>
-         <textarea name="message" placeholder="Tell us about your project..." required class="form-input form-textarea"></textarea>
-         <button type="submit" class="btn btn-primary" id="form-submit-btn">Send message</button>
+         <div class="form-field">
+           <textarea name="message" id="field-message" placeholder="Tell us about your project..." required class="form-input form-textarea"></textarea>
+           <span class="form-field-error" id="err-message"></span>
+         </div>
+         <button type="submit" class="btn btn-primary" id="form-submit-btn" style="width:100%">Send message</button>
        </form>`
     : `<h3>Work with us</h3>
        <p>Have a hardware project? Let's talk about it.</p>
@@ -582,11 +592,16 @@ function contactHTML() {
     <div class="container">
       <div class="contact-grid">
         <div class="contact-left reveal">
-          <img src="images/logo-white.png" alt="${name}" class="footer-logo"
-               onerror="this.style.display='none'">
+          <h2>Let's build something.</h2>
           <p class="contact-tagline">${c.footer_desc || 'PCB design, embedded firmware, and mechanical engineering for hardware startups and established companies.'}</p>
-          <p class="contact-location">Novi Sad, Serbia</p>
-          ${email ? `<a href="mailto:${email}" class="contact-email-link">${email}</a>` : ''}
+          <div class="contact-meta">
+            <span class="contact-meta-item">
+              <i class="ti ti-map-pin"></i> Novi Sad, Serbia
+            </span>
+            ${email ? `<a href="mailto:${email}" class="contact-meta-item">
+              <i class="ti ti-mail"></i> ${email}
+            </a>` : ''}
+          </div>
         </div>
         <div class="contact-right reveal reveal-d2">
           ${rightContent}
@@ -1092,14 +1107,62 @@ function initContactForm() {
   const endpoint = (state.config.form_endpoint || '').trim();
   if (!endpoint) return;
 
+  function setError(fieldId, errId, msg) {
+    const field = document.getElementById(fieldId);
+    const err   = document.getElementById(errId);
+    if (!field || !err) return;
+    if (msg) {
+      field.classList.add('input-error');
+      err.textContent = msg;
+    } else {
+      field.classList.remove('input-error');
+      err.textContent = '';
+    }
+  }
+
+  function validateField(field) {
+    const id  = field.id;
+    const val = field.value.trim();
+    if (id === 'field-name') {
+      setError('field-name', 'err-name', val ? '' : 'Name is required.');
+      return !!val;
+    }
+    if (id === 'field-email') {
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      setError('field-email', 'err-email', !val ? 'Email is required.' : !valid ? 'Please enter a valid email.' : '');
+      return !!val && valid;
+    }
+    if (id === 'field-message') {
+      setError('field-message', 'err-message', val ? '' : 'Message is required.');
+      return !!val;
+    }
+    return true;
+  }
+
+  ['field-name', 'field-email', 'field-message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('blur', () => validateField(el));
+  });
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
+
+    // Honeypot check
+    if (form.querySelector('input[name="_gotcha"]')?.value) return;
+
+    const nameOk    = validateField(document.getElementById('field-name'));
+    const emailOk   = validateField(document.getElementById('field-email'));
+    const messageOk = validateField(document.getElementById('field-message'));
+    if (!nameOk || !emailOk || !messageOk) return;
+
     const btn     = document.getElementById('form-submit-btn');
     const success = document.getElementById('form-success');
     const error   = document.getElementById('form-error');
-    btn.disabled = true;
-    btn.textContent = 'Sendingâ€¦';
+
+    btn.disabled    = true;
+    btn.textContent = 'Sending…';
     error.textContent = '';
+
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -1112,12 +1175,12 @@ function initContactForm() {
       } else {
         const json = await res.json().catch(() => ({}));
         error.textContent = json.error || 'Something went wrong. Please try again.';
-        btn.disabled = false;
+        btn.disabled    = false;
         btn.textContent = 'Send message';
       }
     } catch {
       error.textContent = 'Could not send. Check your connection and try again.';
-      btn.disabled = false;
+      btn.disabled    = false;
       btn.textContent = 'Send message';
     }
   });
