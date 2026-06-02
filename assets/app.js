@@ -886,6 +886,7 @@ function initProjectsCarousel() {
     const container = document.getElementById('projects-cards');
     if (!container) return;
     currentPage = Math.max(0, Math.min(page, totalPages - 1));
+    document.getElementById('projects-home')?.scrollIntoView({ behavior: 'instant' });
 
     container.classList.add('fading');
     setTimeout(() => {
@@ -974,6 +975,7 @@ function initMoreProjectsCarousel(projects) {
     const container = document.getElementById('more-projects-cards');
     if (!container) return;
     currentPage = Math.max(0, Math.min(page, totalPages - 1));
+    container.closest('section')?.scrollIntoView({ behavior: 'instant' });
     container.classList.add('fading');
     setTimeout(() => {
       const slice = projects.slice(currentPage * 3, currentPage * 3 + 3);

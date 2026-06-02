@@ -1719,4 +1719,5 @@ a.contact-meta-item:hover { color: var(--text); }
   .sv-subs-grid { grid-template-columns: 1fr; }
   .sv-projects-grid { grid-template-columns: 1fr; }
   .sv-other-row { grid-template-columns: 1fr; }
+  .sv-other-grid { grid-template-columns: 1fr; }
 }
