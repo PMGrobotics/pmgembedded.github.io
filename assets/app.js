@@ -1055,7 +1055,7 @@ function initScrollReveal() {}
 
 function initActiveNav() {
   if (!window.IntersectionObserver) return;
-  const sections = ['services', 'partners', 'about', 'contact'];
+  const sections = ['services', 'projects-home', 'about', 'contact'];
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
