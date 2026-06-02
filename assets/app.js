@@ -1,11 +1,11 @@
-/* ─────────────────────────────────────────────────────────────────────────────
-   PMG Embedded — single-page app
+﻿/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   PMG Embedded â€” single-page app
    Data is loaded from data/config.yaml, data/projects.yaml, data/team.yaml
-───────────────────────────────────────────────────────────────────────────── */
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 const state = { projects: [], team: [], config: {}, services: [], loadError: null };
 
-// ── Data loading ──────────────────────────────────────────────────────────────
+// â”€â”€ Data loading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadYaml(url) {
   const res = await fetch(url);
@@ -34,7 +34,7 @@ async function loadData() {
   }
 }
 
-// ── Router ────────────────────────────────────────────────────────────────────
+// â”€â”€ Router â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function triggerFade() {
   const app = document.getElementById('app');
@@ -87,7 +87,7 @@ function router() {
   const sectionId = hash.replace(/^#/, '');
 
   if (onHome) {
-    // Already on home — just scroll, no re-render, no fade
+    // Already on home â€” just scroll, no re-render, no fade
     if (sectionId) {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'instant' });
     } else {
@@ -105,7 +105,7 @@ function router() {
   }
 }
 
-// ── Home page ─────────────────────────────────────────────────────────────────
+// â”€â”€ Home page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderHome() {
   document.getElementById('app').innerHTML =
@@ -120,7 +120,7 @@ function renderHome() {
   initServiceCards();
 }
 
-// ── All-projects page ─────────────────────────────────────────────────────────
+// â”€â”€ All-projects page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderProjectsList() {
   const visible = state.projects.filter(p => !p.hidden);
@@ -154,7 +154,7 @@ function renderProjectsList() {
   initScrollReveal();
 }
 
-// ── Service detail page ───────────────────────────────────────────────────────
+// â”€â”€ Service detail page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderService(s) {
   const allProjects = state.projects || [];
@@ -274,7 +274,7 @@ function renderService(s) {
   initScrollReveal();
 }
 
-// ── Home HTML builders ────────────────────────────────────────────────────────
+// â”€â”€ Home HTML builders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function heroHTML() {
   const c = state.config;
@@ -310,7 +310,7 @@ function heroHTML() {
         <p class="hero-desc">${desc}</p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Get in touch</a>
-          <a href="#all-projects" class="btn btn-ghost">See our work ↓</a>
+          <a href="#projects-home" class="btn btn-ghost">See our work ↓</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -595,7 +595,7 @@ function contactHTML() {
   </footer>`;
 }
 
-// ── Project detail page ───────────────────────────────────────────────────────
+// â”€â”€ Project detail page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderProject(p) {
   const images = p.images || [];
@@ -838,7 +838,7 @@ function initProjectSlideshow() {
   container._removeKeyHandler = () => document.removeEventListener('keydown', keyHandler);
 }
 
-// ── Interaction helpers ───────────────────────────────────────────────────────
+// â”€â”€ Interaction helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function initProjectCards() {
   document.querySelectorAll('.project-card').forEach(card => {
@@ -1091,7 +1091,7 @@ function initContactForm() {
     const success = document.getElementById('form-success');
     const error   = document.getElementById('form-error');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Sendingâ€¦';
     error.textContent = '';
     try {
       const res = await fetch(endpoint, {
@@ -1127,7 +1127,7 @@ function initNavLogoLink() {
   });
 }
 
-// ── SVG Icons ─────────────────────────────────────────────────────────────────
+// â”€â”€ SVG Icons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function svgArrowRight(size = 14) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none"
@@ -1236,7 +1236,7 @@ function svgRocket() {
   </svg>`;
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
+// â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function init() {
   await loadData();
