@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /generate_og.py
-Disallow: /assets/
 Disallow: /data/
 
 Sitemap: https://pmgembedded.com/sitemap.xml
