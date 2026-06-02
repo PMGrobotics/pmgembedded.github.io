@@ -1,8 +1,9 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-W, H = 1200, 1200
-PAD = 80
+W, H = 1200, 627
+PAD_X = 80
+PAD_Y = 56
 
 img = Image.new("RGB", (W, H), "#0d1b2a")
 draw = ImageDraw.Draw(img)
@@ -19,63 +20,46 @@ def load_font(size, bold=False):
             return ImageFont.truetype(path, size)
     return ImageFont.load_default()
 
-font_tag = load_font(96, bold=True)
-font_sub = load_font(32, bold=False)
+font_tag = load_font(76, bold=True)
+font_sub = load_font(24, bold=False)
 
-# ── Measure block height ───────────────────────────────────────────────────────
 lines = [
     ("From concept to",  "#ffffff"),
     ("production-ready", "#4aad4a"),
     ("hardware.",        "#ffffff"),
 ]
-line_gap = 18
-
-dummy = Image.new("RGB", (1, 1))
-dd = ImageDraw.Draw(dummy)
-line_heights = [dd.textbbox((0, 0), t, font=font_tag)[3] - dd.textbbox((0, 0), t, font=font_tag)[1] for t, _ in lines]
-
-logo_h      = 52
-logo_gap    = 28
-line_thick  = 1
-gap_line_to_tag = 36
-tagline_h   = sum(line_heights) + line_gap * (len(lines) - 1)
-gap_tag_to_line = 36
-footer_bb   = dd.textbbox((0, 0), "PCB design", font=font_sub)
-footer_h    = footer_bb[3] - footer_bb[1]
-gap_line_to_footer = 28
-
-total_h = (logo_h + logo_gap + line_thick + gap_line_to_tag +
-           tagline_h + gap_tag_to_line + line_thick + gap_line_to_footer + footer_h)
-
-block_top = (H - total_h) // 2
+line_gap = 10
 
 # ── Logo ──────────────────────────────────────────────────────────────────────
+logo_h = 46
 logo_src = Image.open("images/logo-white.png").convert("RGBA")
 ratio = logo_h / logo_src.height
 logo_w = int(logo_src.width * ratio)
 logo = logo_src.resize((logo_w, logo_h), Image.LANCZOS)
-img.paste(logo, (PAD, block_top), logo)
+img.paste(logo, (PAD_X, PAD_Y), logo)
 
 # ── Line under logo ───────────────────────────────────────────────────────────
-line1_y = block_top + logo_h + logo_gap
-draw.line([(PAD, line1_y), (W - PAD, line1_y)], fill="#1e3a52", width=line_thick)
+line1_y = PAD_Y + logo_h + 18
+draw.line([(PAD_X, line1_y), (W - PAD_X, line1_y)], fill="#1e3a52", width=1)
 
 # ── Tagline ───────────────────────────────────────────────────────────────────
-tag_y = line1_y + gap_line_to_tag
-for (text, color), lh in zip(lines, line_heights):
-    draw.text((PAD, tag_y), text, font=font_tag, fill=color)
-    tag_y += lh + line_gap
+tag_y = line1_y + 22
+for text, color in lines:
+    draw.text((PAD_X, tag_y), text, font=font_tag, fill=color)
+    bb = draw.textbbox((PAD_X, tag_y), text, font=font_tag)
+    tag_y = bb[3] + line_gap
 
 # ── Line under tagline ────────────────────────────────────────────────────────
-line2_y = tag_y - line_gap + gap_tag_to_line
-draw.line([(PAD, line2_y), (W - PAD, line2_y)], fill="#1e3a52", width=line_thick)
+line2_y = tag_y + 14
+draw.line([(PAD_X, line2_y), (W - PAD_X, line2_y)], fill="#1e3a52", width=1)
 
-# ── Footer text ───────────────────────────────────────────────────────────────
+# ── Footer ────────────────────────────────────────────────────────────────────
 footer = "PCB design  ·  Embedded firmware  ·  Mechanical engineering"
-footer_bbox = dd.textbbox((0, 0), footer, font=font_sub)
-footer_w = footer_bbox[2] - footer_bbox[0]
+footer_bb = draw.textbbox((0, 0), footer, font=font_sub)
+footer_w = footer_bb[2] - footer_bb[0]
+footer_h = footer_bb[3] - footer_bb[1]
 footer_x = (W - footer_w) // 2
-footer_y = line2_y + gap_line_to_footer
+footer_y = H - PAD_Y - footer_h
 draw.text((footer_x, footer_y), footer, font=font_sub, fill="#64748b")
 
 # ── Save ──────────────────────────────────────────────────────────────────────
