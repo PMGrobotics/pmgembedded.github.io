@@ -1018,6 +1018,7 @@ a.contact-meta-item:hover { color: var(--text); }
 }
 .form-input.input-error { border-color: #ef4444; }
 .form-input.input-error:focus { box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
+.form-input.input-ok { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
 
 /* ─────────────────────────────────────────────
    PROJECT DETAIL PAGE

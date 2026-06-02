@@ -1141,7 +1141,18 @@ function initContactForm() {
 
   ['field-name', 'field-email', 'field-message'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('blur', () => validateField(el));
+    if (el) el.addEventListener('focus', () => {
+      if (el.classList.contains('input-error')) {
+        el.classList.remove('input-error');
+        el.classList.add('input-ok');
+        const errId = id.replace('field-', 'err-');
+        const err = document.getElementById(errId);
+        if (err) err.textContent = '';
+      }
+    });
+    if (el) el.addEventListener('blur', () => {
+      el.classList.remove('input-ok');
+    });
   });
 
   form.addEventListener('submit', async e => {
