@@ -118,6 +118,7 @@ function renderHome() {
   initActiveNav();
   initProjectsCarousel();
   initServiceCards();
+  initAboutReadMore();
 }
 
 // â”€â”€ All-projects page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -376,7 +377,16 @@ function aboutHTML() {
       <div class="section-header reveal">
         <h2>About</h2>
       </div>
-      ${intro ? `<p class="about-intro">${intro}</p>` : ''}
+      ${intro ? (() => {
+        const sentences = intro.match(/[^.!?]+[.!?]+(\s|$)/g) || [intro];
+        const visible = sentences.slice(0, 3).join('').trim();
+        const rest    = sentences.slice(3).join('').trim();
+        return `<p class="about-intro">
+          ${visible}${rest ? `
+          <span class="about-intro-rest"> ${rest}</span>
+          <button class="about-read-more-btn" id="about-read-more">Read more</button>` : ''}
+        </p>`;
+      })() : ''}
       ${(state.about && state.about.stats && state.about.stats.length) ? `
       <div class="stats-row about-stats">
         ${state.about.stats.map(s => `
@@ -872,6 +882,16 @@ function initServiceCards() {
     const go = () => { window.location.hash = `service/${card.dataset.id}`; };
     card.addEventListener('click', go);
     card.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  });
+}
+
+function initAboutReadMore() {
+  const btn  = document.getElementById('about-read-more');
+  const rest = document.querySelector('.about-intro-rest');
+  if (!btn || !rest) return;
+  btn.addEventListener('click', () => {
+    const expanded = rest.classList.toggle('about-intro-rest--visible');
+    btn.textContent = expanded ? 'Show less' : 'Read more';
   });
 }
 

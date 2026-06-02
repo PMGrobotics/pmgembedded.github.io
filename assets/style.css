@@ -766,6 +766,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   text-align: justify;
   hyphens: auto;
 }
+.about-intro-rest { display: inline; }
+.about-read-more-btn { display: none; }
+
+@media (max-width: 768px) {
+  .about-intro-rest { display: none; }
+  .about-intro-rest--visible { display: inline; }
+  .about-read-more-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+  }
+}
+
 .about-divider {
   border: none;
   border-top: 1px solid var(--border);
