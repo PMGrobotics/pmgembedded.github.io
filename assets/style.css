@@ -562,12 +562,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-.client-card:hover {
-  background: color-mix(in srgb, var(--surface) 85%, var(--accent) 15%);
-  border-top-color: var(--accent);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
 .client-card-icon {
   font-size: 32px;
@@ -1561,12 +1555,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px 28px;
-  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 .sv-sub-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.08);
+  border-color: var(--border);
 }
 .sv-sub-icon {
   font-size: 36px;
