@@ -181,7 +181,7 @@ function renderService(s) {
        </div>`
     : '<div></div>';
   const projectsHTML = relevant.length ? `
-    <div class="sv-divider"></div>
+    <div class="sv-divider" id="rel-section"></div>
     <div class="section-header-row">
       <div class="section-header" style="margin-bottom:0">
         <h2>Relevant projects</h2>
@@ -970,10 +970,10 @@ function initRelevantProjectsCarousel(projects) {
       container.classList.remove('fading');
       initProjectCards();
       updateUI();
-      const section = container.closest('section');
-      if (section) {
+      const anchor = document.getElementById('rel-section');
+      if (anchor) {
         const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
-        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+        window.scrollTo({ top: anchor.offsetTop - navH, behavior: 'instant' });
       }
     }, 220);
   }
