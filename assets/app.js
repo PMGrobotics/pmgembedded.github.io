@@ -918,7 +918,7 @@ function initProjectsCarousel() {
       const section = document.getElementById('projects-home');
       if (section) {
         const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
-        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+        window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY - navH, behavior: 'instant' });
       }
     }, 220);
   }
@@ -973,7 +973,7 @@ function initRelevantProjectsCarousel(projects) {
       const anchor = document.getElementById('rel-section');
       if (anchor) {
         const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
-        window.scrollTo({ top: anchor.offsetTop - navH, behavior: 'instant' });
+        window.scrollTo({ top: anchor.getBoundingClientRect().top + window.scrollY - navH, behavior: 'instant' });
       }
     }, 220);
   }
@@ -1015,7 +1015,7 @@ function initMoreProjectsCarousel(projects) {
       const section = container.closest('section');
       if (section) {
         const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
-        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+        window.scrollTo({ top: section.getBoundingClientRect().top + window.scrollY - navH, behavior: 'instant' });
       }
     }, 220);
   }
