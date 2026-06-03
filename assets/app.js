@@ -171,7 +171,7 @@ function renderService(s) {
       <div class="sv-sub-icon"><i class="ti ${sub.icon}" aria-hidden="true"></i></div>
       <h4 class="sv-sub-title">${sub.title}</h4>
       <p class="sv-sub-desc">${sub.desc}</p>
-      ${(sub.tags && sub.tags.length) ? `<div class="project-tags">${sub.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+      ${(sub.tags && sub.tags.length) ? `<ul class="project-tags">${sub.tags.map(t => `<li class="tag">${t}</li>`).join('')}</ul>` : ''}
     </div>`).join('');
 
   const relTotalPages = Math.ceil(relevant.length / 3);
@@ -442,7 +442,7 @@ function servicesHTML() {
       </div>
       <div class="services-grid">
         ${services.map((s, i) => `
-          <div class="service-card reveal reveal-d${i + 1}" data-id="${s.id}" style="cursor:pointer">
+          <div class="service-card reveal reveal-d${i + 1}" data-id="${s.id}" role="button" tabindex="0" aria-label="Learn more about ${s.title}" style="cursor:pointer">
             <div class="service-icon-wrap">
               <div class="service-icon">${s.icon}</div>
             </div>
@@ -531,9 +531,9 @@ function projectCardHTML(p, i) {
     <div class="project-card-body">
       <h3 class="project-title">${p.title || ''}</h3>
       <p class="project-summary">${p.summary || ''}</p>
-      <div class="project-tags">
-        ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
+      <ul class="project-tags">
+        ${(p.tags || []).map(t => `<li class="tag">${t}</li>`).join('')}
+      </ul>
       <span class="project-card-cta">View project ${svgArrowRight(12)}</span>
     </div>
   </div>`;
@@ -706,7 +706,7 @@ function renderProject(p) {
   </section>` : '';
 
   document.getElementById('app').innerHTML = `
-  <div class="project-detail">
+  <article class="project-detail">
     <div class="container">
       <a href="#" class="back-link" id="back-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -737,7 +737,8 @@ function renderProject(p) {
     <div class="lightbox-counter" id="lb-counter"></div>
   </div>
   ${othersHTML}
-  ${contactHTML()}`;
+  ${contactHTML()}
+  </article>`;
 
   document.getElementById('back-btn').addEventListener('click', e => {
     e.preventDefault();

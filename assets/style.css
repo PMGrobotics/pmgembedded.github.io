@@ -686,6 +686,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-wrap: wrap;
   gap: 6px;
   margin-top: auto;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
 }
 .tag {
   font-size: 11px;
