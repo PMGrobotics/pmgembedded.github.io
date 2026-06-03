@@ -701,7 +701,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    PARTNERS
 ───────────────────────────────────────────── */
 .partners-section {
-  padding: 80px 0;
+  padding: 96px 0;
   border-top: 1px solid var(--border);
 }
 .partners-row {
@@ -902,7 +902,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    CONTACT / FOOTER
 ───────────────────────────────────────────── */
 .contact-section {
-  padding: 80px 0 40px;
+  padding: 96px 0 40px;
   border-top: 1px solid var(--border);
 }
 .contact-grid {
@@ -1046,7 +1046,7 @@ a.contact-meta-item:hover { color: var(--text); }
    PROJECT DETAIL PAGE
 ───────────────────────────────────────────── */
 .project-detail {
-  padding-top: calc(var(--nav-h) + 24px);
+  padding-top: calc(var(--nav-h) + 40px);
   padding-bottom: 96px;
   min-height: 100vh;
 }
@@ -1546,7 +1546,7 @@ a.contact-meta-item:hover { color: var(--text); }
    ALL-PROJECTS PAGE
 ───────────────────────────────────────────── */
 .projects-list-page {
-  padding-top: calc(var(--nav-h) + 56px);
+  padding-top: calc(var(--nav-h) + 40px);
   padding-bottom: 96px;
   min-height: 100vh;
 }
@@ -1575,7 +1575,7 @@ a.contact-meta-item:hover { color: var(--text); }
    SERVICE DETAIL PAGE
 ───────────────────────────────────────────── */
 .service-page {
-  padding-top: calc(var(--nav-h) + 48px);
+  padding-top: calc(var(--nav-h) + 40px);
   padding-bottom: 96px;
   min-height: 100vh;
 }
