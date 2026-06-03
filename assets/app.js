@@ -87,16 +87,18 @@ function router() {
   const sectionId = hash.replace(/^#/, '');
 
   if (onHome) {
-    // Already on home â€” just scroll, no re-render, no fade
+    // Already on home — just scroll, no re-render, no fade
     if (sectionId) {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'instant' });
     } else {
+      history.replaceState(null, '', '/');
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
     return;
   }
 
   // Navigating to home from another page
+  if (!sectionId) history.replaceState(null, '', '/');
   triggerFade();
   window.scrollTo({ top: 0, behavior: 'instant' });
   renderHome();
