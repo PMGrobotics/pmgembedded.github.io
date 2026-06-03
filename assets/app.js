@@ -970,6 +970,11 @@ function initRelevantProjectsCarousel(projects) {
       container.classList.remove('fading');
       initProjectCards();
       updateUI();
+      const section = container.closest('section');
+      if (section) {
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+        window.scrollTo({ top: section.offsetTop - navH, behavior: 'instant' });
+      }
     }, 220);
   }
 
