@@ -530,13 +530,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 5px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-dim);
+  color: var(--accent);
   margin-top: 16px;
   transition: gap 0.2s, color 0.2s;
 }
 .service-card-cta svg { transition: transform 0.2s; flex-shrink: 0; }
 .service-card:hover .service-card-cta {
-  color: var(--accent);
+  color: var(--accent-light);
   gap: 8px;
 }
 .service-card:hover .service-card-cta svg { transform: translateX(2px); }
@@ -1017,8 +1017,8 @@ a.contact-meta-item:hover { color: var(--text); }
 .contact-form { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .form-input {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--bg);
+  border: 1px solid #475569;
   border-radius: 8px;
   color: var(--text);
   font-family: inherit;
@@ -1033,7 +1033,7 @@ a.contact-meta-item:hover { color: var(--text); }
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-dim);
 }
-.form-input::placeholder { color: var(--text-dim); }
+.form-input::placeholder { color: var(--text-muted); }
 .form-textarea { resize: vertical; min-height: 160px; }
 .form-field { display: flex; flex-direction: column; gap: 4px; }
 .form-field-error {
