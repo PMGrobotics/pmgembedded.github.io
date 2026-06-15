@@ -40,6 +40,24 @@ partners:
   - name: Alterra
     url: "https://alterra.com.au/"
     logo: "images/partner_logos/alterra.png"
+  - name: Oscilla
+    url: "https://www.oscilla.dk/en/"
+    logo: "images/partner_logos/oscilla_color_transparant.svg"
+  - name: Bikely
+    url: "https://www.safebikely.com/"
+    logo: "images/partner_logos/bikely.svg"
+  - name: Multitel
+    url: "https://www.multitel.com/"
+    logo: "images/partner_logos/multitel.png"
+  - name: Petroglpyh
+    url: "https://petroglyphgames.com/"
+    logo: "images/partner_logos/petroglpyh_rmbg.png"
+  - name: Rabbit Hole Computing
+    url: "https://www.rabbitholecomputing.com/"
+    logo: "images/partner_logos/rabbit_hole-rmbg.png"
+  - name: CITI
+    url: "https://www.citidoo.com/"
+    logo: "images/partner_logos/citi.png"
 
 # ── Contact form ──────────────────────────────────────────────────
 # Sign up at https://formspree.io, create a form, and paste the

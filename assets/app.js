@@ -547,7 +547,7 @@ function partnersHTML() {
   <section class="partners-section" id="partners">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Partners</h2>
+        <h2>Clients</h2>
       </div>
       <div class="partners-row">
         ${partners.map((p, i) => `
