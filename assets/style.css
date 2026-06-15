@@ -764,10 +764,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 16px;
   line-height: 1.75;
   color: var(--text-muted);
-  max-width: 100%;
+  max-width: 680px;
   margin: 0 0 48px 0;
   text-align: justify;
   hyphens: auto;
+}
+.about-intro p {
+  margin: 0 0 16px 0;
+}
+.about-intro p:last-child {
+  margin-bottom: 0;
 }
 .about-intro-rest { display: inline; }
 .about-read-more-btn { display: none; }

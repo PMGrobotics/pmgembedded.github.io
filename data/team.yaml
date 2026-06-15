@@ -15,7 +15,10 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 about:
-  intro: "PMG Embedded is a hardware engineering company based in Novi Sad, Serbia, covering PCB design, embedded firmware, and mechanical engineering as a single integrated service. One team owns the full stack, from the first schematic to production-ready hardware, so nothing falls through the cracks between disciplines. We work across IoT, industrial, medical, consumer, and space applications. Whether the job calls for ultra-low-power wireless design, high-speed signal integrity work, precision mechanics, or all three at once, we have the depth to handle it without pulling in outside help. Clients come to us at every stage. Some have a detailed spec and need an engineering team they can trust to execute it cleanly. Others have an idea and need help turning it into something buildable. We work well in both situations and everything in between. Founded in 2020. Thirty-plus projects delivered to hardware startups, tech companies, and industrial clients across 15 countries. Small enough to be responsive, experienced enough to get it right."
+  intro: |
+    PMG Embedded is a hardware engineering company based in Novi Sad, Serbia. We cover PCB design, embedded firmware, and mechanical engineering as a single integrated service. One team owns the full stack from first schematic to production-ready hardware.
+
+    We work across IoT, industrial, medical, consumer, and space applications. Whether a project calls for ultra-low-power wireless design, high-speed signal integrity work, or precision mechanics, we handle it in-house.
   stats:
     - number: "30+"
       label: "Projects delivered"

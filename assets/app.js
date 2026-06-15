@@ -380,14 +380,14 @@ function aboutHTML() {
         <h2>About</h2>
       </div>
       ${intro ? (() => {
-        const sentences = intro.match(/[^.!?]+[.!?]+(\s|$)/g) || [intro];
-        const visible = sentences.slice(0, 3).join('').trim();
-        const rest    = sentences.slice(3).join('').trim();
-        return `<p class="about-intro">
+        const paragraphs = intro.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+        const visible = paragraphs.slice(0, 1).map(p => `<p>${p}</p>`).join('');
+        const rest    = paragraphs.slice(1).map(p => `<p>${p}</p>`).join('');
+        return `<div class="about-intro">
           ${visible}${rest ? `
-          <span class="about-intro-rest"> ${rest}</span>
+          <span class="about-intro-rest">${rest}</span>
           <button class="about-read-more-btn" id="about-read-more">Read more</button>` : ''}
-        </p>`;
+        </div>`;
       })() : ''}
       ${(state.about && state.about.stats && state.about.stats.length) ? `
       <div class="stats-row about-stats">
