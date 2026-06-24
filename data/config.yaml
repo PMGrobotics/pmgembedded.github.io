@@ -28,9 +28,6 @@ location: "Novi Sad, Serbia"
 # logo: URL to their logo image (leave empty "" to show name as text instead)
 # url:  their website
 partners:
-  - name: Bitgear
-    url: "https://www.bitgear.rs/"
-    logo: "images/partner_logos/bitgear.svg"
   - name: Spes AI
     url: "https://spes.ai/"
     logo: "images/partner_logos/spes.png"
